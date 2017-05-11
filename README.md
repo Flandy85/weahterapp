@@ -7,3 +7,5 @@
 weatherapp + more
 
 Jag hatar dig Johan!
+
+Hatar dig fortfarande !
