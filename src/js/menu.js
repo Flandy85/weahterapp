@@ -23,3 +23,21 @@ function closeMenu() {
     $('#top-menu').hide();
     $('.top-bar').css('background-color', '');
 }
+
+// Clock function
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    h = checkTime(h);
+    m = checkTime(m);
+    $('#time').html(h + ':' + m);
+    var t = setTimeout(startTime, 500);
+}
+// Add zero in front of numbers < 10
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+}
+// Start clock
+startTime();
