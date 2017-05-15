@@ -1,4 +1,4 @@
-$("button").on("click", handleButtonClick);
+//$("button").on("click", handleButtonClick);
 
 function jsonFlickrFeed(json) {
   //console.log(json);
