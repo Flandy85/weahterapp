@@ -16,5 +16,10 @@
     </div>
 </div>
 <div id="top-menu" class="top-menu">
-    <p>Testing</p>
+    <p>Här skall övriga saker i menyn vara...</p>
+    <div class="weather-search">
+        <span id="error"></span>
+        <input id="city-name" type="text" name="city" placeholder="Skriv in en stad">
+        <button id="search-btn">Sök</button>
+    </div>
 </div>
