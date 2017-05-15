@@ -2,21 +2,19 @@
 $(document).ready(function(){
 
     // Click to run search function
-    $('#search-btn').click(function () {
+    $('#search-btn').click(function (string) {
 
         // To get the value of the input field
         // and turn it to a variable that can be
         // used for the search.
         let citySearch = $('#city-name').val();
         theWeather(citySearch);
-        handleButtonClick(citySearch);
     });
 
 });
 
 // Weather search function
 function theWeather(city) {
-
     // If the isn't empty run the seearch / ajax request
     if(city != '') {
 
@@ -26,9 +24,15 @@ function theWeather(city) {
             type: 'GET',
             datsType: 'jsonp',
             success: function(data) {
-                let widget = showTheWeather(data);
 
-                $('#weather-info').html(widget);
+                if(data.name.toLowerCase() == city.toLowerCase()) {
+                    let widget = showTheWeather(data);
+                    handleButtonClick(city);
+                    $('#weather-info').html(widget);
+                } else {
+                    $('#weather-info').html('Tyvärr kunde inga resultat hittas för: ' + city);
+                }
+
 
                 $('#city-name').val('');
                 $('#error').html('');

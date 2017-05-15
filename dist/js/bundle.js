@@ -22,17 +22,16 @@ function jsonFlickrFeed(json) {
 //  });
 };
 
-function handleButtonClick(widget) {
+function handleButtonClick(city) {
     
     var bla = $('.txt_name').val();
-    console.log(widget);
     
 //  $("button").remove();
   
   $.ajax({
     url: 'https://api.flickr.com/services/feeds/photos_public.gne',
     dataType: 'jsonp',
-    data: { "tags": widget, "format": "json" }
+    data: { "tags": city, "format": "json" }
   });
 }
 
@@ -86,9 +85,7 @@ function currentCity (lat, long) {
         success: function(data) {
             let widget = getTheCity(data);
             // Runs the theWeather function with the widget as a parameter.
-            theWeather(widget);
-            handleButtonClick(widget);
-            
+            theWeather(widget);       
         }
 
     });
@@ -127,21 +124,19 @@ function closeMenu() {
 $(document).ready(function(){
 
     // Click to run search function
-    $('#search-btn').click(function () {
+    $('#search-btn').click(function (string) {
 
         // To get the value of the input field
         // and turn it to a variable that can be
         // used for the search.
         let citySearch = $('#city-name').val();
         theWeather(citySearch);
-        handleButtonClick(citySearch);
     });
 
 });
 
 // Weather search function
 function theWeather(city) {
-
     // If the isn't empty run the seearch / ajax request
     if(city != '') {
 
@@ -151,9 +146,15 @@ function theWeather(city) {
             type: 'GET',
             datsType: 'jsonp',
             success: function(data) {
-                let widget = showTheWeather(data);
 
-                $('#weather-info').html(widget);
+                if(data.name.toLowerCase() == city.toLowerCase()) {
+                    let widget = showTheWeather(data);
+                    handleButtonClick(city);
+                    $('#weather-info').html(widget);
+                } else {
+                    $('#weather-info').html('Tyvärr kunde inga resultat hittas för: ' + city);
+                }
+
 
                 $('#city-name').val('');
                 $('#error').html('');
