@@ -54,7 +54,7 @@ function getTheCity (data) {
 
 // Run function only when page is done loading
 $(document).ready(function(){
-    
+
     // Click to run search function
     $('#search-btn').click(function () {
 
