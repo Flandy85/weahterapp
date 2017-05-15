@@ -26,3 +26,16 @@ h6 {
     padding: 0;
     margin: 0 auto;
 }
+
+.top-bar__menu-icons {
+    i {
+        cursor: pointer;
+    }
+    #close-menu {
+        display: none;
+    }
+}
+
+.top-menu {
+    display: none;
+}

@@ -13,12 +13,12 @@
 	"sourcesContent": [
 		"@import \"_colors\", \"_base\";\r\n\r\n// CSS for mobile landscape TEST\r\n@media screen and (min-width: 320px) and (max-width : 736px) and (orientation : landscape) {\r\n    @import \"_mobile_land\";\r\n}\r\n\r\n// CSS for tablet TEST\r\n@media screen and (min-width : 737px) and (max-width : 1024px) and (orientation : portrait) {\r\n    @import \"_tablet\";\r\n}\r\n\r\n// CSS for tablet landscape TEST\r\n@media screen and (min-width : 737px) and (max-width : 1024px) and (orientation : landscape) {\r\n    @import \"_tablet_land\";\r\n}\r\n\r\n// CSS for laptop/small desktop\r\n@media screen and (min-width: 1025px) {\r\n    @import \"_desktop\";\r\n}\r\n\r\n// CSS for large desktop\r\n@media screen and (min-width: 1824px) {\r\n    // @import \"_desktop_large\";\r\n}",
 		"",
-		"// ROOT\r\n:root, html {\r\n    font-size: 62.5%;\r\n}\r\n\r\na {\r\n    color: inherit;\r\n    text-decoration: none;\r\n}\r\n\r\nbody {\r\n    font-family: sans-serif;\r\n    font-size: 16px;\r\n    font-size: 1.6rem;\r\n    margin: 0;\r\n    padding: 0;\r\n\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    padding: 0;\r\n    margin: 0 auto;\r\n}\r\n",
+		"// ROOT\r\n:root, html {\r\n    font-size: 62.5%;\r\n}\r\n\r\na {\r\n    color: inherit;\r\n    text-decoration: none;\r\n}\r\n\r\nbody {\r\n    font-family: sans-serif;\r\n    font-size: 16px;\r\n    font-size: 1.6rem;\r\n    margin: 0;\r\n    padding: 0;\r\n\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    padding: 0;\r\n    margin: 0 auto;\r\n}\r\n\r\n.top-bar__menu-icons {\r\n    i {\r\n        cursor: pointer;\r\n    }\r\n    #close-menu {\r\n        display: none;\r\n    }\r\n}\r\n\r\n.top-menu {\r\n    display: none;\r\n}\r\n",
 		"",
 		"",
 		"",
 		""
 	],
-	"mappings": ";AECA,AAAA,KAAK,EAAE,AAAA,IAAI,CAAC;EACR,SAAS,EAAE,KAAM;CACpB;;;AAED,AAAA,CAAC,CAAC;EACE,KAAK,EAAE,OAAQ;EACf,eAAe,EAAE,IAAK;CACzB;;;AAED,AAAA,IAAI,CAAC;EACD,WAAW,EAAE,UAAW;EACxB,SAAS,EAAE,IAAK;EAChB,SAAS,EAAE,MAAO;EAClB,MAAM,EAAE,CAAE;EACV,OAAO,EAAE,CAAE;CAEd;;;AAED,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE,CAAC;EACC,OAAO,EAAE,CAAE;EACX,MAAM,EAAE,MAAO;CAClB",
+	"mappings": ";AECA,AAAA,KAAK,EAAE,AAAA,IAAI,CAAC;EACR,SAAS,EAAE,KAAM;CACpB;;;AAED,AAAA,CAAC,CAAC;EACE,KAAK,EAAE,OAAQ;EACf,eAAe,EAAE,IAAK;CACzB;;;AAED,AAAA,IAAI,CAAC;EACD,WAAW,EAAE,UAAW;EACxB,SAAS,EAAE,IAAK;EAChB,SAAS,EAAE,MAAO;EAClB,MAAM,EAAE,CAAE;EACV,OAAO,EAAE,CAAE;CAEd;;;AAED,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE;AACF,AAAA,EAAE,CAAC;EACC,OAAO,EAAE,CAAE;EACX,MAAM,EAAE,MAAO;CAClB;;;AAED,AACI,oBADgB,CAChB,CAAC,CAAC;EACE,MAAM,EAAE,OAAQ;CACnB;;;AAHL,AAII,oBAJgB,CAIhB,WAAW,CAAC;EACR,OAAO,EAAE,IAAK;CACjB;;;AAGL,AAAA,SAAS,CAAC;EACN,OAAO,EAAE,IAAK;CACjB",
 	"names": []
 }

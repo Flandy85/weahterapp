@@ -52,6 +52,29 @@ function getTheCity (data) {
     return data.results[0].address_components[4].long_name;
 }
 
+$('#open-menu').click(function() {
+    openMenu();
+});
+
+$('#close-menu').click(function() {
+    closeMenu();
+});
+
+function openMenu() {
+
+    $('#open-menu').hide();
+    $('#close-menu').show();
+    $('#top-menu').show();
+    
+}
+
+function closeMenu() {
+
+    $('#close-menu').hide();
+    $('#open-menu').show();
+    $('#top-menu').hide();
+
+}
 // Run function only when page is done loading
 $(document).ready(function(){
     

@@ -29,4 +29,19 @@ h6 {
   margin: 0 auto;
 }
 
+/* line 31, C:/xampp/htdocs/fed16/weatherapp/src/scss/_base.scss */
+.top-bar__menu-icons i {
+  cursor: pointer;
+}
+
+/* line 34, C:/xampp/htdocs/fed16/weatherapp/src/scss/_base.scss */
+.top-bar__menu-icons #close-menu {
+  display: none;
+}
+
+/* line 39, C:/xampp/htdocs/fed16/weatherapp/src/scss/_base.scss */
+.top-menu {
+  display: none;
+}
+
 /*# sourceMappingURL=../../dist/css/style.map */
