@@ -3,9 +3,10 @@
 function jsonFlickrFeed(json) {
   //console.log(json);
   
-    var flickr = json.items;
+    const flickr = json.items;
    //console.log(flickr[0].media);
-   $("<img />").attr("src", flickr[0].media.m).appendTo("#images"); 
+   $("#images").html('<img src="' + flickr[0].media.m + '">');
+
     
 //  $.each(json.items, function(i, item) {
 //    $("<img />").attr("src", item.media.m).appendTo("#images"); 
