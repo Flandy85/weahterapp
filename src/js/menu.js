@@ -12,7 +12,8 @@ $('#close-menu').click(function() {
 function openMenu() {
     $('#open-menu').hide();
     $('#close-menu').show();
-    $('#top-menu').show(); 
+    $('#top-menu').show();
+    $('.top-bar').css('background-color', 'rgba(255,255,255, 0.9)'); 
 }
 
 // Close menu
@@ -20,4 +21,5 @@ function closeMenu() {
     $('#close-menu').hide();
     $('#open-menu').show();
     $('#top-menu').hide();
+    $('.top-bar').css('background-color', '');
 }

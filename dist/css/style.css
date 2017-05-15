@@ -45,8 +45,24 @@ h6 {
 * 2. header.php (Main Menu / Top Navigation)
 ==================================================
 */
+.clock {
+  display: inline-block; }
+  .clock p {
+    color: #fff;
+    font-size: 40px;
+    margin: 0;
+    text-shadow: 0px 0px 5px #000; }
+
 .top-bar {
   box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   height: 70px;
   padding: 10px;
   position: fixed;
@@ -57,16 +73,18 @@ h6 {
   height: 70px;
   width: 100%; }
 
-.top-bar__menu-icons i {
-  color: #fff;
-  cursor: pointer;
-  font-size: 50px;
-  text-shadow: 0px 0px 5px #000; }
-
-.top-bar__menu-icons #close-menu {
-  display: none; }
+.top-bar__menu-icons {
+  display: inline-block; }
+  .top-bar__menu-icons i {
+    color: #fff;
+    cursor: pointer;
+    font-size: 40px;
+    text-shadow: 0px 0px 5px #000; }
+  .top-bar__menu-icons #close-menu {
+    display: none; }
 
 .top-menu {
+  background-color: rgba(255, 255, 255, 0.9);
   display: none;
   position: fixed;
   width: 100%;
