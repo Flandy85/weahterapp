@@ -5,7 +5,16 @@ function jsonFlickrFeed(json) {
   
     const flickr = json.items;
    //console.log(flickr[0].media);
-   $("#images").html('<img src="' + flickr[0].media.m + '">');
+   // $("#images").html('<img src="' + flickr[0].media.m + '">');
+   $('body').css({"background": "url(" + flickr[0].media.m + ")",
+    "background-size": "cover",
+    "background-repeat": "no-repeat"
+
+
+
+
+    });
+
 
     
 //  $.each(json.items, function(i, item) {
