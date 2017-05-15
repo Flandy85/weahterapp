@@ -15,6 +15,7 @@
             <i id="close-menu" class="fa fa-times" aria-hidden="true"></i>
         </div>
     </div>
+    <div class="top-bar-spacer"></div>
     <div id="top-menu" class="top-menu">
         <p>Här skall övriga saker i menyn vara...</p>
         <div class="weather-search">

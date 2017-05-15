@@ -1,4 +1,25 @@
-// ROOT
+/*================================================
+******************* _base.css ********************
+================================================*/
+
+/*
+==================================================
+*************** Table Of Contents ***************
+*
+* 1. Global styling / Root
+*
+* 2. header.php (Main Menu / Top Navigation)
+*
+**************************************************
+==================================================
+*/
+
+/*
+==================================================
+* 1. Global styling / Root
+==================================================
+*/
+
 :root, html {
     font-size: 62.5%;
 }
@@ -27,9 +48,33 @@ h6 {
     margin: 0 auto;
 }
 
+
+/*
+==================================================
+* 2. header.php (Main Menu / Top Navigation)
+==================================================
+*/
+
+.top-bar {
+    box-sizing: border-box;
+    height: 70px;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
+.top-bar-spacer {
+    height: 70px;
+    width: 100%;
+}
+
 .top-bar__menu-icons {
     i {
+        color: #fff;
         cursor: pointer;
+        font-size: 50px;
+        text-shadow: 0px 0px 5px #000;
     }
     #close-menu {
         display: none;
@@ -38,4 +83,7 @@ h6 {
 
 .top-menu {
     display: none;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
 }
