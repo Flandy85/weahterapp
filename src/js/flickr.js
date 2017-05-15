@@ -12,17 +12,16 @@ function jsonFlickrFeed(json) {
 //  });
 };
 
-function handleButtonClick(widget) {
+function handleButtonClick(city) {
     
     var bla = $('.txt_name').val();
-    console.log(widget);
     
 //  $("button").remove();
   
   $.ajax({
     url: 'https://api.flickr.com/services/feeds/photos_public.gne',
     dataType: 'jsonp',
-    data: { "tags": widget, "format": "json" }
+    data: { "tags": city, "format": "json" }
   });
 }
 
