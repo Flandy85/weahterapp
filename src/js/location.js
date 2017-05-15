@@ -20,7 +20,7 @@ $(document).ready(function() {
 // print error message.
 function userPosition(position) {
     let lat = position.coords.latitude;
-    let long = position.coords.longitude; 
+    let long = position.coords.longitude;
 
     if(lat != '' && long != '') {
         currentCity(lat, long);
