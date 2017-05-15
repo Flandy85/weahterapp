@@ -4,7 +4,7 @@ function jsonFlickrFeed(json) {
   //console.log(json);
   
     var flickr = json.items;
-   console.log(flickr[0].media);
+   //console.log(flickr[0].media);
    $("<img />").attr("src", flickr[0].media.m).appendTo("#images"); 
     
 //  $.each(json.items, function(i, item) {
@@ -12,17 +12,17 @@ function jsonFlickrFeed(json) {
 //  });
 };
 
-function handleButtonClick() {
+function handleButtonClick(widget) {
     
-    var bla = $('#txt_name').val();
-    
+    var bla = $('.txt_name').val();
+    console.log(widget);
     
 //  $("button").remove();
   
   $.ajax({
     url: 'https://api.flickr.com/services/feeds/photos_public.gne',
     dataType: 'jsonp',
-    data: { "tags": bla, "format": "json" }
+    data: { "tags": widget, "format": "json" }
   });
 }
 
@@ -77,6 +77,8 @@ function currentCity (lat, long) {
             let widget = getTheCity(data);
             // Runs the theWeather function with the widget as a parameter.
             theWeather(widget);
+            handleButtonClick(widget);
+            
         }
 
     });
@@ -122,6 +124,7 @@ $(document).ready(function(){
         // used for the search.
         let citySearch = $('#city-name').val();
         theWeather(citySearch);
+        handleButtonClick(citySearch);
     });
 
 });

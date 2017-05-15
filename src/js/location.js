@@ -41,6 +41,8 @@ function currentCity (lat, long) {
             let widget = getTheCity(data);
             // Runs the theWeather function with the widget as a parameter.
             theWeather(widget);
+            handleButtonClick(widget);
+            
         }
 
     });

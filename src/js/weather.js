@@ -9,6 +9,7 @@ $(document).ready(function(){
         // used for the search.
         let citySearch = $('#city-name').val();
         theWeather(citySearch);
+        handleButtonClick(citySearch);
     });
 
 });
