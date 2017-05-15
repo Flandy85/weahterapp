@@ -3,7 +3,7 @@
 ?>
 
     <div class="header">
-        <h1>Get current waether</h1>
+        <h1>Get current weather</h1>
     </div>
     <div id="weather-info"></div>
     <div id="images"></div>
