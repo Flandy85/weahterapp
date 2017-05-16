@@ -10,11 +10,11 @@
 </head>
 <body>
     <div class="top-bar">
-        <div class="top-bar__menu-icons">
+        <div class="top-bar__menu-icons top-bar__item">
             <i id="open-menu" class="fa fa-bars" aria-hidden="true"></i>
             <i id="close-menu" class="fa fa-times" aria-hidden="true"></i>
         </div>
-        <div class="clock">
+        <div class="clock top-bar__item">
             <p id="time"></p>
         </div>
     </div>
