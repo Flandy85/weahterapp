@@ -5,8 +5,9 @@ function dayDateMonth(weekDay, monthDay, thisMonth) {
     let date = theDate(monthDay);
     let month = theMonth(thisMonth);
 
-    console.log(day + ' ' + month + '/' + date);
+    $('#date').html(day + ' ' + month + '/' + date);
 
+    // Update every 10 seconds
     let updateDate = setTimeout(dayDateMonth, 10000);
 }
 
@@ -38,12 +39,14 @@ function theDay(weekDay) {
     return day;
 }
 
+// Returns the day of the month to the variable date
 function theDate(monthDay) {
     let d = new Date();
     let date = d.getDate();
     return date;
 }
 
+// Returns the month to the variable month
 function theMonth(thisMonth) {
     let m = new Date();
     let mm = m.getMonth();
