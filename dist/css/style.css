@@ -27,12 +27,14 @@ a {
   text-decoration: none; }
 
 body {
+  color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
   height: 100vh;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  text-shadow: 0px 0px 5px #000; }
 
 h1,
 h2,
@@ -51,12 +53,10 @@ h6 {
 .clock {
   display: inline-block; }
   .clock p {
-    color: #fff;
     font-family: inherit;
     font-size: 40px;
     margin: 0;
-    opacity: 0.8;
-    text-shadow: 0px 0px 5px #000; }
+    opacity: 0.8; }
 
 .top-bar {
   box-sizing: border-box;
@@ -85,10 +85,8 @@ h6 {
 .top-bar__menu-icons {
   display: inline-block; }
   .top-bar__menu-icons i {
-    color: #fff;
     cursor: pointer;
-    font-size: 50px;
-    text-shadow: 0px 0px 5px #000; }
+    font-size: 50px; }
   .top-bar__menu-icons #close-menu {
     display: none; }
 
