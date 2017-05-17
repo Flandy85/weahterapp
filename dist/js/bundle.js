@@ -242,9 +242,10 @@ function testWeather(latSlice, longSlice) {
 }
 
 
-function smhiWeather(data) {
+function smhiWeather(data, thisYear) {
 
-    let pleaseWork = getObjects(data.timeSeries, 'validTime', '2017-05-17T13:00:00Z');
+    let year = fullDate(thisYear);
+    let weatherNow = getObjects(data.timeSeries, 'validTime', year);
 
     function getObjects(obj, key, val) {
         var objects = [];
@@ -258,8 +259,30 @@ function smhiWeather(data) {
         }
         return objects;
     }
+    return console.log(weatherNow[0].parameters[1].name);
+}
 
-    return console.log(data), console.log(data.timeSeries.length), console.log(pleaseWork);
+function fullDate(thisYear) {
+    let date = new Date(),
+        year = date.getFullYear(),
+        month = date.getMonth(),
+        day = date.getDate(),
+        time = date.getHours();
+
+    month = month + 1;
+    if(month < 10) {
+        month = '0' + month;
+    }
+
+    if(day < 10) {
+        day = '0' + day;
+    }
+
+    if(time < 10) {
+        time = '0' + time;
+    }
+
+    return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
 }
 // Run function only when page is done loading
 $(document).ready(function(){
