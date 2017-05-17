@@ -297,6 +297,16 @@ $(document).ready(function(){
         theWeather(citySearch);
     });
 
+    // Press enter to run search function
+    $('#city-name').keypress(function (e) {
+        let citySearch = $('#city-name').val();
+        let key = e.which;
+        if(key == 13)  // the enter key code
+        {
+            theWeather(citySearch);  
+        }
+    }); 
+
 });
 
 // Weather search function
