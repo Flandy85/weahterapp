@@ -56,7 +56,45 @@ function testWeather(latSlice, longSlice) {
 }
 
 
-function smhiWeather(data) {
+function smhiWeather(data, thisYear) {
 
-    return console.log(data), console.log(data.timeSeries.length);
+    let year = fullDate(thisYear);
+    let weatherNow = getObjects(data.timeSeries, 'validTime', year);
+
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else if (i == key && obj[key] == val) {
+                objects.push(obj);
+            }
+        }
+        return objects;
+    }
+    return console.log(weatherNow[0].parameters[1].name);
+}
+
+function fullDate(thisYear) {
+    let date = new Date(),
+        year = date.getFullYear(),
+        month = date.getMonth(),
+        day = date.getDate(),
+        time = date.getHours();
+
+    month = month + 1;
+    if(month < 10) {
+        month = '0' + month;
+    }
+
+    if(day < 10) {
+        day = '0' + day;
+    }
+
+    if(time < 10) {
+        time = '0' + time;
+    }
+
+    return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
 }
