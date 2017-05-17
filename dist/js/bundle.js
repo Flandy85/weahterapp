@@ -244,7 +244,22 @@ function testWeather(latSlice, longSlice) {
 
 function smhiWeather(data) {
 
-    return console.log(data), console.log(data.timeSeries.length);
+    let pleaseWork = getObjects(data.timeSeries, 'validTime', '2017-05-17T13:00:00Z');
+
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else if (i == key && obj[key] == val) {
+                objects.push(obj);
+            }
+        }
+        return objects;
+    }
+
+    return console.log(data), console.log(data.timeSeries.length), console.log(pleaseWork);
 }
 // Run function only when page is done loading
 $(document).ready(function(){
