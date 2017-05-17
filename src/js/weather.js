@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 // Weather search function
 function theWeather(city) {
-    // If the isn't empty run the seearch / ajax request
+    // If city isn't empty run the seearch / ajax request
     if(city != '') {
 
         // Ajax request to Open Weather Map

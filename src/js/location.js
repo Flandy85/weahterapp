@@ -40,7 +40,8 @@ function currentCity (lat, long) {
         success: function(data) {
             let widget = getTheCity(data);
             // Runs the theWeather function with the widget as a parameter.
-            theWeather(widget);       
+            theWeather(widget);
+            $('#city').html(widget);     
         }
 
     });

@@ -155,7 +155,8 @@ function currentCity (lat, long) {
         success: function(data) {
             let widget = getTheCity(data);
             // Runs the theWeather function with the widget as a parameter.
-            theWeather(widget);       
+            theWeather(widget);
+            $('#city').html(widget);     
         }
 
     });
@@ -231,14 +232,14 @@ $(document).ready(function() {
 // print error message.
 
 function testPosition(position) {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
+    let lat = position.coords.latitude,
+        long = position.coords.longitude;
 
-    let latString = lat.toString();
-    let longString = long.toString();
+    let latString = lat.toString(),
+        longString = long.toString();
 
-    let latSlice = latString.slice(0, 9);
-    let longSlice = longString.slice(0, 9);
+    let latSlice = latString.slice(0, 9),
+        longSlice = longString.slice(0, 9);
 
     if(latSlice != '' && longSlice != '') {
         testWeather(latSlice, longSlice);
@@ -282,7 +283,7 @@ function smhiWeather(data, thisYear) {
         }
         return objects;
     }
-    return $('#temp-now').html(Math.round(weatherNow[0].parameters[1].values[0]) + '°');
+    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°');
 }
 
 // Function for calculating the parameters
@@ -333,7 +334,7 @@ $(document).ready(function(){
 
 // Weather search function
 function theWeather(city) {
-    // If the isn't empty run the seearch / ajax request
+    // If city isn't empty run the seearch / ajax request
     if(city != '') {
 
         // Ajax request to Open Weather Map

@@ -7,6 +7,7 @@
     </div>
 
     <div class="date-container">
+        <p id="city"></p>
         <p id="date"></p>
     </div>
 

@@ -19,14 +19,14 @@ $(document).ready(function() {
 // print error message.
 
 function testPosition(position) {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
+    let lat = position.coords.latitude,
+        long = position.coords.longitude;
 
-    let latString = lat.toString();
-    let longString = long.toString();
+    let latString = lat.toString(),
+        longString = long.toString();
 
-    let latSlice = latString.slice(0, 9);
-    let longSlice = longString.slice(0, 9);
+    let latSlice = latString.slice(0, 9),
+        longSlice = longString.slice(0, 9);
 
     if(latSlice != '' && longSlice != '') {
         testWeather(latSlice, longSlice);
@@ -70,7 +70,7 @@ function smhiWeather(data, thisYear) {
         }
         return objects;
     }
-    return $('#temp-now').html(Math.round(weatherNow[0].parameters[1].values[0]) + '°');
+    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°');
 }
 
 // Function for calculating the parameters
