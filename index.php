@@ -3,7 +3,7 @@
 ?>
 
     <div class="weather-now">
-        <p id="temp-now">20°</p>
+        <p id="temp-now"></p>
     </div>
 
     <div class="date-container">
