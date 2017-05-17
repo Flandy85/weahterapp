@@ -247,14 +247,14 @@ function theWeather(city) {
 }
 
 function showTheWeather(data) {
-    return '<h2>Current weather for ' + data.name + ', ' + data.sys.country + '</h2>' +
-           '<h3><strong>Weather:</strong> ' + data.weather[0].main + '</h3>' +
-           '<h3><strong>Description:</strong> ' + data.weather[0].description + '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">' + '</h3>' +
-           '<h3><strong>Temp:</strong> ' + data.main.temp + ' &deg;C</h3>' +
-           '<h3><strong>Pressure:</strong> ' + data.main.pressure + ' hPa</h3>' +
-           '<h3><strong>Humidity:</strong> ' + data.main.humidity + ' %</h3>' +
-           '<h3><strong>Min. Temperature:</strong> ' + data.main.temp_min + ' &deg;C</h3>' +
-           '<h3><strong>Max. Temperature:</strong> ' + data.main.temp_max + ' &deg;C</h3>' +
-           '<h3><strong>Wind speed:</strong> ' + data.wind.speed + ' m/s</h3>' +
-           '<h3><strong>Wind direction:</strong> ' + data.wind.deg + '&deg;</h3>';
+    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">Current weather for ' + data.name + ', ' + data.sys.country + '</h2>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Weather:</strong> ' + data.weather[0].main + '</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Description:</strong> ' + data.weather[0].description + '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">' + '</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Temp:</strong> ' + data.main.temp + ' &deg;C</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Pressure:</strong> ' + data.main.pressure + ' hPa</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Humidity:</strong> ' + data.main.humidity + ' %</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Min. Temperature:</strong> ' + data.main.temp_min + ' &deg;C</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Max. Temperature:</strong> ' + data.main.temp_max + ' &deg;C</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Wind speed:</strong> ' + data.wind.speed + ' m/s</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Wind direction:</strong> ' + data.wind.deg + '&deg;</h3>';
 }
