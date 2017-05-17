@@ -1,5 +1,4 @@
-//$("button").on("click", handleButtonClick);
-
+// Function jsonFlickrFeed is activated when user use searchfunction in weather.js
 function jsonFlickrFeed(json) {
   //console.log(json);
   
@@ -11,22 +10,12 @@ function jsonFlickrFeed(json) {
     "background-repeat": "no-repeat"
 
 
-
-
     });
-
-
-    
-//  $.each(json.items, function(i, item) {
-//    $("<img />").attr("src", item.media.m).appendTo("#images"); 
-//  });
 };
-
+// function that activates ajax call to flickr api when searchbutton i clicked.
 function handleButtonClick(city) {
     
     var bla = $('.txt_name').val();
-    
-//  $("button").remove();
   
   $.ajax({
     url: 'https://api.flickr.com/services/feeds/photos_public.gne',
@@ -34,12 +23,3 @@ function handleButtonClick(city) {
     data: { "tags": city, "format": "json" }
   });
 }
-
-
-/*
-index.html tagsen...
-   <button id="button">I Love cats!</button>
-   <input type="text" id="txt_name"/>
-
-<div id="images"></div>
-*/
