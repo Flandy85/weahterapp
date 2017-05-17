@@ -61,8 +61,7 @@ function theMonth(thisMonth) {
 }
 
 dayDateMonth();
-//$("button").on("click", handleButtonClick);
-
+// Function jsonFlickrFeed is activated when user use searchfunction in weather.js
 function jsonFlickrFeed(json) {
   //console.log(json);
   
@@ -74,22 +73,12 @@ function jsonFlickrFeed(json) {
     "background-repeat": "no-repeat"
 
 
-
-
     });
-
-
-    
-//  $.each(json.items, function(i, item) {
-//    $("<img />").attr("src", item.media.m).appendTo("#images"); 
-//  });
 };
-
+// function that activates ajax call to flickr api when searchbutton i clicked.
 function handleButtonClick(city) {
     
     var bla = $('.txt_name').val();
-    
-//  $("button").remove();
   
   $.ajax({
     url: 'https://api.flickr.com/services/feeds/photos_public.gne',
@@ -98,14 +87,6 @@ function handleButtonClick(city) {
   });
 }
 
-
-/*
-index.html tagsen...
-   <button id="button">I Love cats!</button>
-   <input type="text" id="txt_name"/>
-
-<div id="images"></div>
-*/
 $(document).ready(function() {
     // Check if browser supports geolocation.
     function getLocation() {
@@ -248,7 +229,7 @@ function theWeather(city) {
         $('#error').html('You have to type in a City!');
     }
 }
-
+// function displaying response data from openweather api.
 function showTheWeather(data) {
     return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">Current weather for ' + data.name + ', ' + data.sys.country + '</h2>' +
            '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Weather:</strong> ' + data.weather[0].main + '</h3>' +

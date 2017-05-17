@@ -43,7 +43,7 @@ function theWeather(city) {
         $('#error').html('You have to type in a City!');
     }
 }
-
+// function displaying response data from openweather api.
 function showTheWeather(data) {
     return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">Current weather for ' + data.name + ', ' + data.sys.country + '</h2>' +
            '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Weather:</strong> ' + data.weather[0].main + '</h3>' +
