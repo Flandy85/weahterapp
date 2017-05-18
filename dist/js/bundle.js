@@ -120,7 +120,6 @@ $(document).ready(function() {
             // If browser supports geolocation, get the location
             // and run the userPosition function.
             navigator.geolocation.getCurrentPosition(userPosition);
-            console.log('Yay!');
         } else {
             // Error message if the browser doesn't support geolocation.
             console.log('Geolocation is not supported by this browser!');
@@ -153,12 +152,10 @@ function currentCity (lat, long) {
         type: 'GET',
         datsType: 'jsonp',
         success: function(data) {
-            let widget = getTheCity(data);
-            // Runs the theWeather function with the widget as a parameter.
-            theWeather(widget);
-            $('#city').html(widget);     
+            let city = getTheCity(data);
+            // Runs the cityConverter function with the city as a parameter.
+            cityConverter(city); 
         }
-
     });
 }
 
@@ -168,6 +165,46 @@ function getTheCity (data) {
     return data.results[0].address_components[4].long_name;
 }
 
+function cityConverter(city) {
+
+    $.ajax({
+
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyDpZWJC15Lusfe5_B1TLoYEHzZVtZLSPVw',
+        type: 'GET',
+        datsType: 'jsonp',
+        success: function(data) {
+
+            let googleCity = data.results[0].address_components[0].long_name;
+
+            if(googleCity.toLowerCase() == city.toLowerCase()) {
+                convertCity();
+                $('#city').html(googleCity);
+            } else {
+                $('#city').html('');
+                console.log('Could not find any matches for your search!');
+            }
+
+            function convertCity() {
+                let lat = data.results[0].geometry.location.lat,
+                    long = data.results[0].geometry.location.lng;
+
+                let latString = lat.toString(),
+                    longString = long.toString();
+
+                let latSlice = latString.slice(0, 9),
+                    longSlice = longString.slice(0, 9);
+
+                if(latSlice != '' && longSlice != '') {
+                    theWeather(latSlice, longSlice);
+                    console.log('Batman!');
+                } else {
+                    console.log('Could not load position!');
+                }
+            }
+        }
+
+    });
+}
 // Call the open menu function
 $('#open-menu').click(function() {
     openMenu();
@@ -211,45 +248,33 @@ function checkTime(i) {
 }
 // Start clock
 startTime();
-$(document).ready(function() {
-    // Check if browser supports geolocation.
-    function testLocation() {
-        if (navigator.geolocation) {
-            // If browser supports geolocation, get the location
-            // and run the userPosition function.
-            navigator.geolocation.getCurrentPosition(testPosition);
-        } else {
-            // Error message if the browser doesn't support geolocation.
-            console.log('Geolocation is not supported by this browser!');
+// Run function only when page is done loading
+$(document).ready(function(){
+
+    // Click to run search function
+    $('#search-btn').click(function (string) {
+      // selected_size = 800; --------> // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
+        // To get the value of the input field
+        // and turn it to a variable that can be
+        // used for the search.
+        let citySearch = $('#city-name').val();
+        cityConverter(citySearch);
+    });
+
+    // Press enter to run search function
+    $('#city-name').keypress(function (e) {
+        let citySearch = $('#city-name').val();
+        let key = e.which;
+        if(key == 13)  // the enter key code
+        {
+            cityConverter(citySearch);  
         }
-    }
-    // Run the get location function.
-    testLocation();
+    }); 
 });
 
-// When latitude and longitude is retrieved
-// run the currentCity function, else
-// print error message.
-
-function testPosition(position) {
-    let lat = position.coords.latitude,
-        long = position.coords.longitude;
-
-    let latString = lat.toString(),
-        longString = long.toString();
-
-    let latSlice = latString.slice(0, 9),
-        longSlice = longString.slice(0, 9);
-
-    if(latSlice != '' && longSlice != '') {
-        testWeather(latSlice, longSlice);
-    } else {
-        console.log('Could not load position!');
-    }
-}
 
 // Function for retrieving weather data from SMHI
-function testWeather(latSlice, longSlice) {
+function theWeather(latSlice, longSlice) {
     // Ajax request to SMHI
     $.ajax({
         url: 'https://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/' + longSlice + '/lat/' + latSlice + '/data.json',
@@ -306,72 +331,4 @@ function fullDate(thisYear) {
         time = '0' + time;
     }
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
-}
-// Run function only when page is done loading
-$(document).ready(function(){
-
-    // Click to run search function
-    $('#search-btn').click(function (string) {
-      // selected_size = 800; --------> // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
-        // To get the value of the input field
-        // and turn it to a variable that can be
-        // used for the search.
-        let citySearch = $('#city-name').val();
-        theWeather(citySearch);
-    });
-
-    // Press enter to run search function
-    $('#city-name').keypress(function (e) {
-        let citySearch = $('#city-name').val();
-        let key = e.which;
-        if(key == 13)  // the enter key code
-        {
-            theWeather(citySearch);  
-        }
-    }); 
-
-});
-
-// Weather search function
-function theWeather(city) {
-    // If city isn't empty run the seearch / ajax request
-    if(city != '') {
-
-        // Ajax request to Open Weather Map
-        $.ajax({
-            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric' + '&APPID=afd14917ee4d88301eb1c859a24135f3',
-            type: 'GET',
-            datsType: 'jsonp',
-            success: function(data) {
-
-                if(data.name.toLowerCase() == city.toLowerCase()) {
-                    let widget = showTheWeather(data);
-                    handleButtonClick(city);
-                    $('#weather-info').html(widget);
-                } else {
-                    $('#weather-info').html('Tyvärr kunde inga resultat hittas för: ' + city);
-                }
-
-
-                $('#city-name').val('');
-                $('#error').html('');
-            }
-        });
-    } else {
-        // Error message if you haven't filled in a city
-        $('#error').html('You have to type in a City!');
-    }
-}
-// function displaying response data from openweather api.
-function showTheWeather(data) {
-    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">Current weather for ' + data.name + ', ' + data.sys.country + '</h2>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Weather:</strong> ' + data.weather[0].main + '</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Description:</strong> ' + data.weather[0].description + '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">' + '</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Temp:</strong> ' + data.main.temp + ' &deg;C</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Pressure:</strong> ' + data.main.pressure + ' hPa</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Humidity:</strong> ' + data.main.humidity + ' %</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Min. Temperature:</strong> ' + data.main.temp_min + ' &deg;C</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Max. Temperature:</strong> ' + data.main.temp_max + ' &deg;C</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Wind speed:</strong> ' + data.wind.speed + ' m/s</h3>' +
-           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Wind direction:</strong> ' + data.wind.deg + '&deg;</h3>';
 }

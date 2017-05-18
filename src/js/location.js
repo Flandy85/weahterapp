@@ -5,7 +5,6 @@ $(document).ready(function() {
             // If browser supports geolocation, get the location
             // and run the userPosition function.
             navigator.geolocation.getCurrentPosition(userPosition);
-            console.log('Yay!');
         } else {
             // Error message if the browser doesn't support geolocation.
             console.log('Geolocation is not supported by this browser!');
@@ -38,12 +37,10 @@ function currentCity (lat, long) {
         type: 'GET',
         datsType: 'jsonp',
         success: function(data) {
-            let widget = getTheCity(data);
-            // Runs the theWeather function with the widget as a parameter.
-            theWeather(widget);
-            $('#city').html(widget);     
+            let city = getTheCity(data);
+            // Runs the cityConverter function with the city as a parameter.
+            cityConverter(city); 
         }
-
     });
 }
 
@@ -51,4 +48,45 @@ function currentCity (lat, long) {
 // return it to the widget variable.
 function getTheCity (data) {
     return data.results[0].address_components[4].long_name;
+}
+
+function cityConverter(city) {
+
+    $.ajax({
+
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyDpZWJC15Lusfe5_B1TLoYEHzZVtZLSPVw',
+        type: 'GET',
+        datsType: 'jsonp',
+        success: function(data) {
+
+            let googleCity = data.results[0].address_components[0].long_name;
+
+            if(googleCity.toLowerCase() == city.toLowerCase()) {
+                convertCity();
+                $('#city').html(googleCity);
+            } else {
+                $('#city').html('');
+                console.log('Could not find any matches for your search!');
+            }
+
+            function convertCity() {
+                let lat = data.results[0].geometry.location.lat,
+                    long = data.results[0].geometry.location.lng;
+
+                let latString = lat.toString(),
+                    longString = long.toString();
+
+                let latSlice = latString.slice(0, 9),
+                    longSlice = longString.slice(0, 9);
+
+                if(latSlice != '' && longSlice != '') {
+                    theWeather(latSlice, longSlice);
+                    console.log('Batman!');
+                } else {
+                    console.log('Could not load position!');
+                }
+            }
+        }
+
+    });
 }
