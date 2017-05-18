@@ -80,14 +80,21 @@ function jsonFlickrFeed(json) {
 
 // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
 // var apiurl,myresult,apiurl_size,selected_size;  
+<<<<<<< HEAD
 // apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=10&format=json&nojsoncallback=1";
 
 function flickrImg(city) {
+=======
+// apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallback=1";
+// console.log(apiurl);
+function handleButtonClick(city) {
+>>>>>>> cd21e53c8e81b7f59c3f53e5de650bace5f08bae
     
     // var bla = $('.txt_name').val();
   
   $.ajax({
     url: 'https://api.flickr.com/services/feeds/photos_public.gne',
+    // url: 'https://api.flickr.com/services/feeds/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallbak=1',
     dataType: 'jsonp',
     data: { "tags": city, "format": "json" }
   });
@@ -96,18 +103,20 @@ function flickrImg(city) {
 
 // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
   // $('#search-btn').click(function(){  
-  //   $.getJSON(apiurl,function(json){  
-  //     $.each(json.photos.photo,function(i,myresult){  
-  //       apiurl_size = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&photo_id="+myresult.id+"&format=json&nojsoncallback=1";  
-  //       $.getJSON(apiurl_size,function(size){  
-  //       $.each(size.sizes.size,function(i,myresult_size){  
-  //       if(myresult_size.width==selected_size){  
-  //       $("body").append('<p><a href="'+myresult_size.url+'" target="_blank"><img src="'+myresult_size.source+'"/></a></p>');  
-  //       }  
-  //       })  
-  //       })  
-  //     });  
-  //   });  
+    // $.getJSON(apiurl,function(json){  
+    //   $.each(json.photos.photo,function(i,myresult){  
+    //     apiurl_size = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&photo_id="+myresult.id+"&format=json&nojsoncallback=1";  
+    //     $.getJSON(apiurl_size,function(size){  
+    //       $.each(size.sizes.size,function(i,myresult_size){  
+    //         if(myresult_size.width==selected_size){  
+    //           $("body").append('<p><a href="'+myresult_size.url+'" target="_blank"><img src="'+myresult_size.source+'"/></a></p>');
+
+    //           console.log(myresult_size.url + myresult_size.source); 
+    //         }  
+    //       })  
+    //     })  
+    //   });  
+    // });  
   // }); 
 
 
@@ -287,6 +296,8 @@ function theWeather(latSlice, longSlice) {
         datsType: 'jsonp',
         success: function(data) {
             let widget = smhiWeather(data);
+            console.log(data);
+            
         }
     });
 }
@@ -297,7 +308,9 @@ function smhiWeather(data, thisYear) {
 
     let year = fullDate(thisYear);
     let weatherNow = getObjects(data.timeSeries, 'validTime', year);
-
+    
+    
+    
     // Function for finding the object contaning the
     // weather information for current hour and return
     // it to the variable weatherNow.
@@ -313,7 +326,68 @@ function smhiWeather(data, thisYear) {
         }
         return objects;
     }
-    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°');
+    let icon = weatherNow[0].parameters[18].values[0];
+    
+    switch(icon) {
+    case 1:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/sun-b.png" />')
+        break;
+    case 2:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 3:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 4:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 5:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 6:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.pngg" />')
+        break;
+    case 7:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/fog-b.png" />')
+        break;
+    case 8:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        break;
+     case 9:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        break;
+    case 10:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 11:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 12:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        break;
+    case 13:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        break;
+    case 14:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 15:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    
+    default:
+        console.log("Defauuuult");
+}
+    
+    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
+    $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
+    $('#weather-pressure').html('Lufttryck: ' + weatherNow[0].parameters[0].values[0] + " " + weatherNow[0].parameters[0].unit) +
+    $('#symbol').html('Symbol: ' + weatherNow[0].parameters[18].values[0]);
+    
+    
+    
+    
+   
 }
 
 // Function for calculating the parameters
@@ -336,4 +410,9 @@ function fullDate(thisYear) {
         time = '0' + time;
     }
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
+}
+
+function smhiShow() {
+    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
+    
 }
