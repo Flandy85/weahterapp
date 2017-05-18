@@ -3,10 +3,11 @@
 ?>
 
     <div class="weather-now">
-        <p id="temp-now">20</p>
+        <p id="temp-now"></p>
     </div>
 
     <div class="date-container">
+        <p id="city"></p>
         <p id="date"></p>
     </div>
 

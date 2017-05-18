@@ -11,11 +11,21 @@ $(document).ready(function(){
         theWeather(citySearch);
     });
 
+    // Press enter to run search function
+    $('#city-name').keypress(function (e) {
+        let citySearch = $('#city-name').val();
+        let key = e.which;
+        if(key == 13)  // the enter key code
+        {
+            theWeather(citySearch);  
+        }
+    }); 
+
 });
 
 // Weather search function
 function theWeather(city) {
-    // If the isn't empty run the seearch / ajax request
+    // If city isn't empty run the seearch / ajax request
     if(city != '') {
 
         // Ajax request to Open Weather Map

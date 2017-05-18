@@ -155,7 +155,8 @@ function currentCity (lat, long) {
         success: function(data) {
             let widget = getTheCity(data);
             // Runs the theWeather function with the widget as a parameter.
-            theWeather(widget);       
+            theWeather(widget);
+            $('#city').html(widget);     
         }
 
     });
@@ -217,7 +218,6 @@ $(document).ready(function() {
             // If browser supports geolocation, get the location
             // and run the userPosition function.
             navigator.geolocation.getCurrentPosition(testPosition);
-            console.log('Yay!');
         } else {
             // Error message if the browser doesn't support geolocation.
             console.log('Geolocation is not supported by this browser!');
@@ -232,17 +232,14 @@ $(document).ready(function() {
 // print error message.
 
 function testPosition(position) {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
+    let lat = position.coords.latitude,
+        long = position.coords.longitude;
 
-    let latString = lat.toString();
-    let longString = long.toString();
+    let latString = lat.toString(),
+        longString = long.toString();
 
-    let latSlice = latString.slice(0, 9);
-    let longSlice = longString.slice(0, 9);
-
-    console.log(latSlice);
-    console.log(longSlice);
+    let latSlice = latString.slice(0, 9),
+        longSlice = longString.slice(0, 9);
 
     if(latSlice != '' && longSlice != '') {
         testWeather(latSlice, longSlice);
@@ -251,28 +248,29 @@ function testPosition(position) {
     }
 }
 
+// Function for retrieving weather data from SMHI
 function testWeather(latSlice, longSlice) {
-    // If the isn't empty run the seearch / ajax request
-
-    // Ajax request to Open Weather Map
+    // Ajax request to SMHI
     $.ajax({
         url: 'https://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/' + longSlice + '/lat/' + latSlice + '/data.json',
         type: 'GET',
         datsType: 'jsonp',
         success: function(data) {
-
-                let widget = smhiWeather(data);
-
+            let widget = smhiWeather(data);
         }
     });
 }
 
-
+// Function for selecting only the needed
+// weather information.
 function smhiWeather(data, thisYear) {
 
     let year = fullDate(thisYear);
     let weatherNow = getObjects(data.timeSeries, 'validTime', year);
 
+    // Function for finding the object contaning the
+    // weather information for current hour and return
+    // it to the variable weatherNow.
     function getObjects(obj, key, val) {
         var objects = [];
         for (var i in obj) {
@@ -285,9 +283,11 @@ function smhiWeather(data, thisYear) {
         }
         return objects;
     }
-    return console.log(weatherNow[0].parameters[1].name);
+    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°');
 }
 
+// Function for calculating the parameters
+// needed for the getObjects function.
 function fullDate(thisYear) {
     let date = new Date(),
         year = date.getFullYear(),
@@ -299,15 +299,12 @@ function fullDate(thisYear) {
     if(month < 10) {
         month = '0' + month;
     }
-
     if(day < 10) {
         day = '0' + day;
     }
-
     if(time < 10) {
         time = '0' + time;
     }
-
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
 }
 // Run function only when page is done loading
@@ -323,11 +320,21 @@ $(document).ready(function(){
         theWeather(citySearch);
     });
 
+    // Press enter to run search function
+    $('#city-name').keypress(function (e) {
+        let citySearch = $('#city-name').val();
+        let key = e.which;
+        if(key == 13)  // the enter key code
+        {
+            theWeather(citySearch);  
+        }
+    }); 
+
 });
 
 // Weather search function
 function theWeather(city) {
-    // If the isn't empty run the seearch / ajax request
+    // If city isn't empty run the seearch / ajax request
     if(city != '') {
 
         // Ajax request to Open Weather Map
