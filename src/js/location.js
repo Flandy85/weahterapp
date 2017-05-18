@@ -7,7 +7,7 @@ $(document).ready(function() {
             navigator.geolocation.getCurrentPosition(userPosition);
         } else {
             // Error message if the browser doesn't support geolocation.
-            console.log('Geolocation is not supported by this browser!');
+            let error = 'Geolocation is not supported by this browser!';
         }
     }
     // Run the get location function.
@@ -52,7 +52,7 @@ function getTheCity (data) {
 }
 
 function cityConverter(city) {
-
+    $('.error').html('');
     $.ajax({
 
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyDpZWJC15Lusfe5_B1TLoYEHzZVtZLSPVw',
@@ -64,10 +64,13 @@ function cityConverter(city) {
 
             if(googleCity.toLowerCase() == city.toLowerCase()) {
                 convertCity();
+                flickrImg(googleCity);
                 $('#city').html(googleCity);
             } else {
                 $('#city').html('');
                 console.log('Could not find any matches for your search!');
+                let error = 'Could not find any matches for: ' + city;
+                errorMessage(error);
             }
 
             function convertCity() {

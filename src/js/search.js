@@ -9,7 +9,6 @@ $(document).ready(function(){
         // used for the search.
         let citySearch = $('#city-name').val();
         cityConverter(citySearch);
-        flickrImg(citySearch);
     });
 
     // Press enter to run search function
@@ -20,9 +19,15 @@ $(document).ready(function(){
         let key = e.which;
         if(key == 13)  // The enter key code
         {
-            flickrImg(citySearch);
             cityConverter(citySearch);  
         }
     }); 
 });
+
+
+function errorMessage(error) {
+    $('.error').html(error);
+    $('#temp-now').html('');
+    $('body').css( "background", "" );
+}
 
