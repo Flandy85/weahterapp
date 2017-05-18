@@ -24,6 +24,6 @@
         <div class="weather-search">
             <span id="error"></span>
             <input id="city-name" type="text" name="city" placeholder="Skriv in en stad">
-            <button id="search-btn">Sök</button>
+            <button id="search-btn" class="button-search">Sök</button>
         </div>
     </div>
