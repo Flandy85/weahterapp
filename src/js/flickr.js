@@ -17,24 +17,16 @@ function jsonFlickrFeed(json) {
 
 // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
 // var apiurl,myresult,apiurl_size,selected_size;  
-<<<<<<< HEAD
-// apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=10&format=json&nojsoncallback=1";
 
 function flickrImg(city) {
-=======
-// apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallback=1";
-// console.log(apiurl);
-function handleButtonClick(city) {
->>>>>>> cd21e53c8e81b7f59c3f53e5de650bace5f08bae
     
     // var bla = $('.txt_name').val();
-  
-  $.ajax({
-    url: 'https://api.flickr.com/services/feeds/photos_public.gne',
-    // url: 'https://api.flickr.com/services/feeds/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallbak=1',
-    dataType: 'jsonp',
-    data: { "tags": city, "format": "json" }
-  });
+    $.ajax({
+      url: 'https://api.flickr.com/services/feeds/photos_public.gne',
+      // url: 'https://api.flickr.com/services/feeds/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallbak=1',
+      dataType: 'jsonp',
+      data: { "tags": city, "format": "json" }
+});
 
 
 
