@@ -257,6 +257,8 @@ function testWeather(latSlice, longSlice) {
         datsType: 'jsonp',
         success: function(data) {
             let widget = smhiWeather(data);
+            console.log(data);
+            
         }
     });
 }
@@ -267,7 +269,9 @@ function smhiWeather(data, thisYear) {
 
     let year = fullDate(thisYear);
     let weatherNow = getObjects(data.timeSeries, 'validTime', year);
-
+    
+    
+    
     // Function for finding the object contaning the
     // weather information for current hour and return
     // it to the variable weatherNow.
@@ -283,7 +287,68 @@ function smhiWeather(data, thisYear) {
         }
         return objects;
     }
-    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°');
+    let icon = weatherNow[0].parameters[18].values[0];
+    
+    switch(icon) {
+    case 1:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/sun-b.png" />')
+        break;
+    case 2:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 3:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 4:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 5:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 6:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.pngg" />')
+        break;
+    case 7:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/fog-b.png" />')
+        break;
+    case 8:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        break;
+     case 9:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        break;
+    case 10:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 11:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 12:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        break;
+    case 13:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        break;
+    case 14:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 15:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    
+    default:
+        console.log("Defauuuult");
+}
+    
+    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
+    $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
+    $('#weather-pressure').html('Lufttryck: ' + weatherNow[0].parameters[0].values[0] + " " + weatherNow[0].parameters[0].unit) +
+    $('#symbol').html('Symbol: ' + weatherNow[0].parameters[18].values[0]);
+    
+    
+    
+    
+   
 }
 
 // Function for calculating the parameters
@@ -306,6 +371,11 @@ function fullDate(thisYear) {
         time = '0' + time;
     }
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
+}
+
+function smhiShow() {
+    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
+    
 }
 // Run function only when page is done loading
 $(document).ready(function(){
