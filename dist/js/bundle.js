@@ -80,15 +80,9 @@ function jsonFlickrFeed(json) {
 
 // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
 // var apiurl,myresult,apiurl_size,selected_size;  
-<<<<<<< HEAD
-// apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=10&format=json&nojsoncallback=1";
-
-function flickrImg(city) {
-=======
 // apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallback=1";
 // console.log(apiurl);
 function handleButtonClick(city) {
->>>>>>> cd21e53c8e81b7f59c3f53e5de650bace5f08bae
     
     // var bla = $('.txt_name').val();
   
@@ -163,8 +157,7 @@ function currentCity (lat, long) {
         success: function(data) {
             let city = getTheCity(data);
             // Runs the cityConverter function with the city as a parameter.
-            cityConverter(city);
-            flickrImg(city); 
+            cityConverter(city); 
         }
     });
 }
@@ -269,18 +262,14 @@ $(document).ready(function(){
         // used for the search.
         let citySearch = $('#city-name').val();
         cityConverter(citySearch);
-        flickrImg(citySearch);
     });
 
     // Press enter to run search function
     $('#city-name').keypress(function (e) {
-        // Does the same as the above function
-        // but listens for the enter key instead.
         let citySearch = $('#city-name').val();
         let key = e.which;
-        if(key == 13)  // The enter key code
+        if(key == 13)  // the enter key code
         {
-            flickrImg(citySearch);
             cityConverter(citySearch);  
         }
     }); 
