@@ -1,7 +1,7 @@
 <?php
     require_once 'header.php';
 ?>
-
+    
     <div class="weather-now">
         <p id="temp-now"></p>
     </div>

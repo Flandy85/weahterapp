@@ -19,7 +19,7 @@ function jsonFlickrFeed(json) {
 // var apiurl,myresult,apiurl_size,selected_size;  
 // apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=10&format=json&nojsoncallback=1";
 
-function handleButtonClick(city) {
+function flickrImg(city) {
     
     // var bla = $('.txt_name').val();
   

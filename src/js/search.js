@@ -9,14 +9,18 @@ $(document).ready(function(){
         // used for the search.
         let citySearch = $('#city-name').val();
         cityConverter(citySearch);
+        flickrImg(citySearch);
     });
 
     // Press enter to run search function
     $('#city-name').keypress(function (e) {
+        // Does the same as the above function
+        // but listens for the enter key instead.
         let citySearch = $('#city-name').val();
         let key = e.which;
-        if(key == 13)  // the enter key code
+        if(key == 13)  // The enter key code
         {
+            flickrImg(citySearch);
             cityConverter(citySearch);  
         }
     }); 

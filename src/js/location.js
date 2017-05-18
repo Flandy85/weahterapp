@@ -39,7 +39,8 @@ function currentCity (lat, long) {
         success: function(data) {
             let city = getTheCity(data);
             // Runs the cityConverter function with the city as a parameter.
-            cityConverter(city); 
+            cityConverter(city);
+            flickrImg(city); 
         }
     });
 }
