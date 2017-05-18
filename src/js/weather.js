@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     // Click to run search function
     $('#search-btn').click(function (string) {
-      // selected_size = 800; --------> // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
+      // selected_size = 800; //--------> // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
         // To get the value of the input field
         // and turn it to a variable that can be
         // used for the search.
