@@ -38,7 +38,7 @@ function smhiWeather(data, thisYear) {
         return objects;
     }
     let icon = weatherNow[0].parameters[18].values[0];
-    
+    console.log(icon);
     switch(icon) {
     case 1:
         $('#theDiv').prepend('<img id="theImg" src="images/icons/sun-b.png" />')
@@ -47,7 +47,7 @@ function smhiWeather(data, thisYear) {
         $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
         break;
     case 3:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/cloud-w.png" />')
         break;
     case 4:
         $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
