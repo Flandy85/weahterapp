@@ -282,6 +282,8 @@ function theWeather(latSlice, longSlice) {
         datsType: 'jsonp',
         success: function(data) {
             let widget = smhiWeather(data);
+            console.log(data);
+            
         }
     });
 }
@@ -292,7 +294,9 @@ function smhiWeather(data, thisYear) {
 
     let year = fullDate(thisYear);
     let weatherNow = getObjects(data.timeSeries, 'validTime', year);
-
+    
+    
+    
     // Function for finding the object contaning the
     // weather information for current hour and return
     // it to the variable weatherNow.
@@ -308,7 +312,68 @@ function smhiWeather(data, thisYear) {
         }
         return objects;
     }
-    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°');
+    let icon = weatherNow[0].parameters[18].values[0];
+    
+    switch(icon) {
+    case 1:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/sun-b.png" />')
+        break;
+    case 2:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 3:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 4:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 5:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        break;
+    case 6:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.pngg" />')
+        break;
+    case 7:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/fog-b.png" />')
+        break;
+    case 8:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        break;
+     case 9:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        break;
+    case 10:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 11:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 12:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        break;
+    case 13:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        break;
+    case 14:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    case 15:
+        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        break;
+    
+    default:
+        console.log("Defauuuult");
+}
+    
+    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
+    $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
+    $('#weather-pressure').html('Lufttryck: ' + weatherNow[0].parameters[0].values[0] + " " + weatherNow[0].parameters[0].unit) +
+    $('#symbol').html('Symbol: ' + weatherNow[0].parameters[18].values[0]);
+    
+    
+    
+    
+   
 }
 
 // Function for calculating the parameters
@@ -331,4 +396,81 @@ function fullDate(thisYear) {
         time = '0' + time;
     }
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
+<<<<<<< HEAD
 }
+
+function smhiShow() {
+    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
+    
+}
+// Run function only when page is done loading
+$(document).ready(function(){
+
+    // Click to run search function
+    $('#search-btn').click(function (string) {
+      // selected_size = 800; --------> // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
+        // To get the value of the input field
+        // and turn it to a variable that can be
+        // used for the search.
+        let citySearch = $('#city-name').val();
+        theWeather(citySearch);
+    });
+
+    // Press enter to run search function
+    $('#city-name').keypress(function (e) {
+        let citySearch = $('#city-name').val();
+        let key = e.which;
+        if(key == 13)  // the enter key code
+        {
+            theWeather(citySearch);  
+        }
+    }); 
+
+});
+
+// Weather search function
+function theWeather(city) {
+    // If city isn't empty run the seearch / ajax request
+    if(city != '') {
+
+        // Ajax request to Open Weather Map
+        $.ajax({
+            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric' + '&APPID=afd14917ee4d88301eb1c859a24135f3',
+            type: 'GET',
+            datsType: 'jsonp',
+            success: function(data) {
+
+                if(data.name.toLowerCase() == city.toLowerCase()) {
+                    let widget = showTheWeather(data);
+                    handleButtonClick(city);
+                    $('#weather-info').html(widget);
+                } else {
+                    $('#weather-info').html('Tyvärr kunde inga resultat hittas för: ' + city);
+                }
+
+
+                $('#city-name').val('');
+                $('#error').html('');
+            }
+        });
+    } else {
+        // Error message if you haven't filled in a city
+        $('#error').html('You have to type in a City!');
+    }
+}
+// function displaying response data from openweather api.
+function showTheWeather(data) {
+    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">Current weather for ' + data.name + ', ' + data.sys.country + '</h2>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Weather:</strong> ' + data.weather[0].main + '</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Description:</strong> ' + data.weather[0].description + '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">' + '</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Temp:</strong> ' + data.main.temp + ' &deg;C</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Pressure:</strong> ' + data.main.pressure + ' hPa</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Humidity:</strong> ' + data.main.humidity + ' %</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Min. Temperature:</strong> ' + data.main.temp_min + ' &deg;C</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Max. Temperature:</strong> ' + data.main.temp_max + ' &deg;C</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Wind speed:</strong> ' + data.wind.speed + ' m/s</h3>' +
+           '<h3 style="color: white; text-shadow: black 0.1em 0.1em 0.2em"><strong>Wind direction:</strong> ' + data.wind.deg + '&deg;</h3>';
+}
+=======
+}
+>>>>>>> 36c34c5bd3b20b1addf0e4806c4e5cc7ffba2b72
