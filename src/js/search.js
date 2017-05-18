@@ -26,8 +26,12 @@ $(document).ready(function(){
 
 
 function errorMessage(error) {
-    $('.error').html(error);
+    	
+    $('<div class="error-container"><p class="error">' + error + '</p></div>').insertAfter( "#top-menu" );
     $('#temp-now').html('');
     $('body').css( "background", "" );
+    setTimeout(function(errorMessage) {
+        $('.error-container').remove();
+    }, 7000);
 }
 

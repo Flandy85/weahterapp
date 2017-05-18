@@ -7,7 +7,8 @@ $(document).ready(function() {
             navigator.geolocation.getCurrentPosition(userPosition);
         } else {
             // Error message if the browser doesn't support geolocation.
-            let error = 'Geolocation is not supported by this browser!';
+            let error = 'Den här webbläsaren stödjer inte geolocation!';
+            errorMessage(error);
         }
     }
     // Run the get location function.
@@ -24,7 +25,8 @@ function userPosition(position) {
     if(lat != '' && long != '') {
         currentCity(lat, long);
     } else {
-        console.log('Could not load position!');
+        let error = 'Kunde inte ladda din position!';
+        errorMessage(error);
     }
 }
 
@@ -68,8 +70,7 @@ function cityConverter(city) {
                 $('#city').html(googleCity);
             } else {
                 $('#city').html('');
-                console.log('Could not find any matches for your search!');
-                let error = 'Could not find any matches for: ' + city;
+                let error = 'Inga resultat hittades för: ' + city;
                 errorMessage(error);
             }
 
@@ -85,9 +86,9 @@ function cityConverter(city) {
 
                 if(latSlice != '' && longSlice != '') {
                     theWeather(latSlice, longSlice);
-                    console.log('Batman!');
                 } else {
-                    console.log('Could not load position!');
+                    let error = 'Kunde inte ladda din position!';
+                    errorMessage(error);
                 }
             }
         }

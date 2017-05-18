@@ -123,7 +123,8 @@ $(document).ready(function() {
             navigator.geolocation.getCurrentPosition(userPosition);
         } else {
             // Error message if the browser doesn't support geolocation.
-            let error = 'Geolocation is not supported by this browser!';
+            let error = 'Den här webbläsaren stödjer inte geolocation!';
+            errorMessage(error);
         }
     }
     // Run the get location function.
@@ -140,7 +141,8 @@ function userPosition(position) {
     if(lat != '' && long != '') {
         currentCity(lat, long);
     } else {
-        console.log('Could not load position!');
+        let error = 'Kunde inte ladda din position!';
+        errorMessage(error);
     }
 }
 
@@ -184,8 +186,7 @@ function cityConverter(city) {
                 $('#city').html(googleCity);
             } else {
                 $('#city').html('');
-                console.log('Could not find any matches for your search!');
-                let error = 'Could not find any matches for: ' + city;
+                let error = 'Inga resultat hittades för: ' + city;
                 errorMessage(error);
             }
 
@@ -201,9 +202,9 @@ function cityConverter(city) {
 
                 if(latSlice != '' && longSlice != '') {
                     theWeather(latSlice, longSlice);
-                    console.log('Batman!');
                 } else {
-                    console.log('Could not load position!');
+                    let error = 'Kunde inte ladda din position!';
+                    errorMessage(error);
                 }
             }
         }
@@ -281,9 +282,13 @@ $(document).ready(function(){
 
 
 function errorMessage(error) {
-    $('.error').html(error);
+    	
+    $('<div class="error-container"><p class="error">' + error + '</p></div>').insertAfter( "#top-menu" );
     $('#temp-now').html('');
     $('body').css( "background", "" );
+    setTimeout(function(errorMessage) {
+        $('.error-container').remove();
+    }, 7000);
 }
 
 
@@ -309,8 +314,6 @@ function smhiWeather(data, thisYear) {
     let year = fullDate(thisYear);
     let weatherNow = getObjects(data.timeSeries, 'validTime', year);
     
-    
-    
     // Function for finding the object contaning the
     // weather information for current hour and return
     // it to the variable weatherNow.
@@ -330,66 +333,61 @@ function smhiWeather(data, thisYear) {
     console.log(icon);
     // let iconStyles = $('#theImg').css({"widht": "250px;", "height": "250px;"});
     switch(icon) {
-    case 1:
-        $('#theDiv').html('<img id="theImg" src="images/icons/sun-b.png" style="width: 250px; height: 250px;"/>')
-        break;
-    case 2:
-        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png"style="width: 250px; height: 250px;" />')
-        break;
-    case 3:
-        $('#theDiv').html('<img id="theImg" src="images/icons/cloud-w.png" style="width: 250px; height: 250px;"/>')
-        break;
-    case 4:
-        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png" style="width: 250px; height: 250px;"/>')
-        break;
-    case 5:
-        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png"style="width: 250px; height: 250px;" />')
-        break;
-    case 6:
-        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.pngg" style="width: 250px; height: 250px;"/>')
-        break;
-    case 7:
-        $('#theDiv').html('<img id="theImg" src="images/icons/fog-b.png"style="width: 250px; height: 250px;" />')
-        break;
-    case 8:
-        $('#theDiv').html('<img id="theImg" src="images/icons/rain-b.png"style="width: 250px; height: 250px;" />')
-        break;
-     case 9:
-        $('#theDiv').html('<img id="theImg" src="images/icons/thunder-b.png"style="width: 250px; height: 250px;" />')
-        break;
-    case 10:
-        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
-        break;
-    case 11:
-        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
-        break;
-    case 12:
-        $('#theDiv').html('<img id="theImg" src="images/icons/rain-b.png" style="width: 250px; height: 250px;" />')
-        break;
-    case 13:
-        $('#theDiv').html('<img id="theImg" src="images/icons/thunder-b.png" style="width: 250px; height: 250px;" />')
-        break;
-    case 14:
-        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;" />')
-        break;
-    case 15:
-        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
-        break;
-    
-    default:
-        console.log("Defauuuult");
+        case 1:
+            $('#theDiv').html('<img id="theImg" src="images/icons/sun-b.png" style="width: 250px; height: 250px;"/>')
+            break;
+        case 2:
+            $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png"style="width: 250px; height: 250px;" />')
+            break;
+        case 3:
+            $('#theDiv').html('<img id="theImg" src="images/icons/cloud-w.png" style="width: 250px; height: 250px;"/>')
+            break;
+        case 4:
+            $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png" style="width: 250px; height: 250px;"/>')
+            break;
+        case 5:
+            $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png"style="width: 250px; height: 250px;" />')
+            break;
+        case 6:
+            $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.pngg" style="width: 250px; height: 250px;"/>')
+            break;
+        case 7:
+            $('#theDiv').html('<img id="theImg" src="images/icons/fog-b.png"style="width: 250px; height: 250px;" />')
+            break;
+        case 8:
+            $('#theDiv').html('<img id="theImg" src="images/icons/rain-b.png"style="width: 250px; height: 250px;" />')
+            break;
+        case 9:
+            $('#theDiv').html('<img id="theImg" src="images/icons/thunder-b.png"style="width: 250px; height: 250px;" />')
+            break;
+        case 10:
+            $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
+            break;
+        case 11:
+            $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
+            break;
+        case 12:
+            $('#theDiv').html('<img id="theImg" src="images/icons/rain-b.png" style="width: 250px; height: 250px;" />')
+            break;
+        case 13:
+            $('#theDiv').html('<img id="theImg" src="images/icons/thunder-b.png" style="width: 250px; height: 250px;" />')
+            break;
+        case 14:
+            $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;" />')
+            break;
+        case 15:
+            $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
+            break;
         
-}
-    
+        default:
+            console.log("Defauuuult");
+    }
+   
     return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
     $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
     $('#weather-pressure').html('Lufttryck: ' + weatherNow[0].parameters[0].values[0] + " " + weatherNow[0].parameters[0].unit) +
     $('#symbol').html('Symbol: ' + weatherNow[0].parameters[18].values[0]);
-    
-    
-    
-    
-   
+       
 }
 
 // Function for calculating the parameters

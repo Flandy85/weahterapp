@@ -2,10 +2,6 @@
     require_once 'header.php';
 ?>
 
-    <div>
-        <p class="error"></p>
-    </div>
-    
     <div class="weather-now">
         <p id="temp-now"></p>
     </div>
