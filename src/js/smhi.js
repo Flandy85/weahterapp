@@ -38,56 +38,58 @@ function smhiWeather(data, thisYear) {
         return objects;
     }
     let icon = weatherNow[0].parameters[18].values[0];
-    
+    console.log(icon);
+    // let iconStyles = $('#theImg').css({"widht": "250px;", "height": "250px;"});
     switch(icon) {
     case 1:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/sun-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/sun-b.png" style="width: 250px; height: 250px;"/>')
         break;
     case 2:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png"style="width: 250px; height: 250px;" />')
         break;
     case 3:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/cloud-w.png" style="width: 250px; height: 250px;"/>')
         break;
     case 4:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png" style="width: 250px; height: 250px;"/>')
         break;
     case 5:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.png"style="width: 250px; height: 250px;" />')
         break;
     case 6:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/slightly-cloudy-b.pngg" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/slightly-cloudy-b.pngg" style="width: 250px; height: 250px;"/>')
         break;
     case 7:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/fog-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/fog-b.png"style="width: 250px; height: 250px;" />')
         break;
     case 8:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/rain-b.png"style="width: 250px; height: 250px;" />')
         break;
      case 9:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/thunder-b.png"style="width: 250px; height: 250px;" />')
         break;
     case 10:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
         break;
     case 11:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
         break;
     case 12:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/rain-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/rain-b.png" style="width: 250px; height: 250px;" />')
         break;
     case 13:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/thunder-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/thunder-b.png" style="width: 250px; height: 250px;" />')
         break;
     case 14:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;" />')
         break;
     case 15:
-        $('#theDiv').prepend('<img id="theImg" src="images/icons/snow-b.png" />')
+        $('#theDiv').html('<img id="theImg" src="images/icons/snow-b.png" style="width: 250px; height: 250px;"/>')
         break;
     
     default:
         console.log("Defauuuult");
+        
 }
     
     return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
