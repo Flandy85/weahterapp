@@ -80,18 +80,16 @@ function jsonFlickrFeed(json) {
 
 // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
 // var apiurl,myresult,apiurl_size,selected_size;  
-// apiurl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallback=1";
-// console.log(apiurl);
-function handleButtonClick(city) {
+
+function flickrImg(city) {
     
     // var bla = $('.txt_name').val();
-  
-  $.ajax({
-    url: 'https://api.flickr.com/services/feeds/photos_public.gne',
-    // url: 'https://api.flickr.com/services/feeds/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallbak=1',
-    dataType: 'jsonp',
-    data: { "tags": city, "format": "json" }
-  });
+    $.ajax({
+      url: 'https://api.flickr.com/services/feeds/photos_public.gne',
+      // url: 'https://api.flickr.com/services/feeds/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallbak=1',
+      dataType: 'jsonp',
+      data: { "tags": city, "format": "json" }
+});
 
 
 
@@ -157,7 +155,8 @@ function currentCity (lat, long) {
         success: function(data) {
             let city = getTheCity(data);
             // Runs the cityConverter function with the city as a parameter.
-            cityConverter(city); 
+            cityConverter(city);
+            flickrImg(city); 
         }
     });
 }
@@ -262,14 +261,18 @@ $(document).ready(function(){
         // used for the search.
         let citySearch = $('#city-name').val();
         cityConverter(citySearch);
+        flickrImg(citySearch);
     });
 
     // Press enter to run search function
     $('#city-name').keypress(function (e) {
+        // Does the same as the above function
+        // but listens for the enter key instead.
         let citySearch = $('#city-name').val();
         let key = e.which;
-        if(key == 13)  // the enter key code
+        if(key == 13)  // The enter key code
         {
+            flickrImg(citySearch);
             cityConverter(citySearch);  
         }
     }); 
@@ -379,6 +382,32 @@ function smhiWeather(data, thisYear) {
    
 }
 
+// Function for calculating the parameters
+// needed for the getObjects function.
+function fullDate(thisYear) {
+    let date = new Date(),
+        year = date.getFullYear(),
+        month = date.getMonth(),
+        day = date.getDate(),
+        time = date.getHours();
+
+    month = month + 1;
+    if(month < 10) {
+        month = '0' + month;
+    }
+    if(day < 10) {
+        day = '0' + day;
+    }
+    if(time < 10) {
+        time = '0' + time;
+    }
+    return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
+}
+
+function smhiShow() {
+    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
+    
+}
 // Function for calculating the parameters
 // needed for the getObjects function.
 function fullDate(thisYear) {
