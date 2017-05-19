@@ -9,6 +9,8 @@ $(document).ready(function(){
         // used for the search.
         let citySearch = $('#city-name').val();
         cityConverter(citySearch);
+        // function, Close dropdown menu after click
+        closeMenu();
     });
 
     // Press enter to run search function
@@ -20,7 +22,10 @@ $(document).ready(function(){
         if(key == 13)  // The enter key code
         {
             cityConverter(citySearch);  
+            // function, Close dropdown menu after click
+            closeMenu();
         }
+
     }); 
 });
 
