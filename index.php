@@ -15,9 +15,9 @@
     <div id="images"></div>
     
     <div class="weather-description">
-       <p id="weather-wind"></p>
-       <p id="weather-pressure"></p>
        <div id="theDiv"></div>
+       <p id="weather-wind"></p>
+       <p id="weather-pressure"></p>    
     </div>
 
 <?php
