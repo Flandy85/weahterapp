@@ -62,19 +62,19 @@ function theMonth(thisMonth) {
 
 dayDateMonth();
 // Function jsonFlickrFeed is activated when user use searchfunction in weather.js
-function jsonFlickrFeed(json) {
-  //console.log(json);
-  
-    const flickr = json.items;
-   //console.log(flickr[0].media);
-   // $("#images").html('<img src="' + flickr[0].media.m + '">');
-   $('body').css({"background": "url(" + flickr[0].media.m + ")",
-    "background-size": "cover",
-    "background-repeat": "no-repeat"
-
-
-    });
-};
+//function jsonFlickrFeed(json) {
+//  //console.log(json);
+//  
+//    const flickr = json.items;
+//   //console.log(flickr[0].media);
+//   // $("#images").html('<img src="' + flickr[0].media.m + '">');
+//   $('body').css({"background": "url(" +data.photos.photo[0].url_l + ")",
+//    "background-size": "cover",
+//    "background-repeat": "no-repeat"
+//
+//
+//    });
+//};
 // function that activates ajax call to flickr api when searchbutton i clicked.
 
 
@@ -84,12 +84,16 @@ function jsonFlickrFeed(json) {
 function flickrImg(city) {
     
     // var bla = $('.txt_name').val();
-    $.ajax({
-      url: 'https://api.flickr.com/services/feeds/photos_public.gne',
-      // url: 'https://api.flickr.com/services/feeds/?method=flickr.photos.getSizes&api_key=cbbd48e2830e6787ff24a776d11985ba&per_page=5&format=json&nojsoncallbak=1',
-      dataType: 'jsonp',
-      data: { "tags": city, "format": "json" }
+    $.ajax('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=d307b62e26833c7387dc4f1fe10eac6f&text=' + city + '&extras=url_l&per_page=1&page=1&format=json', { dataType: 'jsonp', jsonp: 'jsoncallback' })
+    .then(function(data, status, xhr) {
+        $('body').css({"background": "url(" +data.photos.photo[0].url_l + ")",
+    "background-size": "cover",
+    "background-repeat": "no-repeat"});
+       // console.log('success (promises): ' + data[0]);
+}, function(xhr, status, error) {
+    console.log('failed (promises): ' + error);
 });
+
 
 
 
