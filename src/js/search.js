@@ -5,7 +5,12 @@ $(document).ready(function(){
     // Press enter to run search function
     $("#city-name").keypress(function() {
         if (event.which === 13) callback();
+<<<<<<< HEAD
     });      
+=======
+    }); 
+       
+>>>>>>> a1984fe567d3435cbe20db340284c2534a8414a2
 });
 
 // Variable with function which activates on click or keydown event.
@@ -16,7 +21,6 @@ let callback = function() {
     // function, Close dropdown menu after click or keydown enter
     closeMenu();
 }
-
 
 function errorMessage(error) {
     	

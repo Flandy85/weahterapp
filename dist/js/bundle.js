@@ -284,7 +284,12 @@ $(document).ready(function(){
     // Press enter to run search function
     $("#city-name").keypress(function() {
         if (event.which === 13) callback();
+<<<<<<< HEAD
     });      
+=======
+    }); 
+       
+>>>>>>> a1984fe567d3435cbe20db340284c2534a8414a2
 });
 
 // Variable with function which activates on click or keydown event.
@@ -295,7 +300,6 @@ let callback = function() {
     // function, Close dropdown menu after click or keydown enter
     closeMenu();
 }
-
 
 function errorMessage(error) {
     	
@@ -351,7 +355,7 @@ function smhiWeather(data, thisYear) {
             $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>')
             break;
         case 2:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Mest klart</h3>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Mest klart</h3>')
             break;
         case 3:
             $('#theDiv').html('<img id="theImg" src="images/weathericons/cloud-b.png"/><h3 id="theWeather">Växlande molnighet</h3>')
@@ -363,7 +367,7 @@ function smhiWeather(data, thisYear) {
             $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>')
             break;
         case 6:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Mulet</h3>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>')
             break;
         case 7:
             $('#theDiv').html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>')

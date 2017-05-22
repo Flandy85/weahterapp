@@ -196,9 +196,6 @@ h6 {
   height: 250px;
   width: 250px; }
 
-#theWeather {
-  text-align: center; }
-
 .weather-description {
   box-sizing: border-box;
   -webkit-box-align: center;
@@ -217,7 +214,7 @@ h6 {
       -ms-flex-pack: center;
           justify-content: center; }
 
-#weather-wind, #weather-pressure {
+#weather-wind, #weather-pressure, #theWeather {
   text-align: center;
   padding: 0;
   margin: 5px; }
