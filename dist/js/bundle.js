@@ -331,49 +331,49 @@ function smhiWeather(data, thisYear) {
     // let iconStyles = $('#theImg').css({"widht": "250px;", "height": "250px;"});
     switch(icon) {
         case 1:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>')
             break;
         case 2:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Mest klart</h3>')
             break;
         case 3:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/cloud-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/cloud-b.png"/><h3 id="theWeather">Växlande molnighet</h3>')
             break;
         case 4:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Halvklart</h3>')
             break;
         case 5:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>')
             break;
         case 6:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Mulet</h3>')
             break;
         case 7:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/fog-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>')
             break;
         case 8:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regnskurar</h3>')
             break;
         case 9:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åskskurar</h3>')
             break;
         case 10:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Byar av snöblandat regn</h3>')
             break;
         case 11:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöbyar</h3>')
             break;
         case 12:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regn</h3>')
             break;
         case 13:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>')
             break;
         case 14:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>')
             break;
         case 15:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>')
             break;
         
         default:

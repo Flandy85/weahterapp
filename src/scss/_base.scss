@@ -209,14 +209,18 @@ h6 {
     margin-top: 10vh;
     width: 100%;
 }
+
 #theImg {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     height: 250px;
     width: 250px;
-
-
 }
+
+#theWeather {
+    text-align: center;
+}
+
 .weather-description {
     display: flex;
     flex-direction: column;
