@@ -334,7 +334,7 @@ function smhiWeather(data, thisYear) {
             $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>')
             break;
         case 2:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Mest klart</h3>')
+            $('#theDiv').html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Mest klart</h3>')
             break;
         case 3:
             $('#theDiv').html('<img id="theImg" src="images/weathericons/cloud-b.png"/><h3 id="theWeather">Växlande molnighet</h3>')
