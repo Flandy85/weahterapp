@@ -222,14 +222,50 @@ h6 {
 }
 
 .weather-description {
+    box-sizing: border-box;
+    align-items: center;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
 }
 #weather-wind, #weather-pressure {
     text-align: center;
     padding: 0;
     margin: 5px;
+}
+
+
+.loader {
+    animation: rotation 4.5s infinite linear;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+}
+
+.loader-text {
+    animation: blink 5s infinite linear;
+    text-align: center;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

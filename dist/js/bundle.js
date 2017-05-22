@@ -120,8 +120,12 @@ function flickrImg(city) {
 }
 
 $(document).ready(function() {
-    // Check if browser supports geolocation.
-    function getLocation() {
+    let pageLoader = true;
+    loader(pageLoader);
+});
+
+// Check if browser supports geolocation.
+function getLocation() {
         if (navigator.geolocation) {
             // If browser supports geolocation, get the location
             // and run the userPosition function.
@@ -132,9 +136,6 @@ $(document).ready(function() {
             errorMessage(error);
         }
     }
-    // Run the get location function.
-    getLocation();
-});
 
 // When latitude and longitude is retrieved
 // run the currentCity function, else
@@ -216,6 +217,23 @@ function cityConverter(city) {
 
     });
 }
+
+function loader(pageLoader) {
+
+    $('#theDiv').html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>');
+
+    if(pageLoader) {
+        setTimeout(function(){
+            // Run the get location function.
+            getLocation();
+        }, 500);
+    } else {
+        setTimeout(function(){
+            let citySearch = $('#city-name').val();
+            cityConverter(citySearch);
+        }, 500);
+    }
+}
 // Call the open menu function
 $('#open-menu').click(function() {
     openMenu();
@@ -266,41 +284,14 @@ $(document).ready(function(){
     // Press enter to run search function
     $("#city-name").keypress(function() {
         if (event.which === 13) callback();
-    });
-
-    // Click to run search function
-    // $('#search-btn').click(function (string) {
-    //   // selected_size = 800; --------> // KANSKE ÄR KOD SOM SKA ANVÄNDAS FÖR ATT FÅ UT STÖRRE BILDER FRÅN FLICKR, OKLART I DAGSLÄGET!
-    //     // To get the value of the input field
-    //     // and turn it to a variable that can be
-    //     // used for the search.
-    //     let citySearch = $('#city-name').val();
-    //     cityConverter(citySearch);
-    //     // function, Close dropdown menu after click
-    //     closeMenu();
-    // });
-
-    // Press enter to run search function
-    // $('#city-name').keypress(function (e) {
-    //     // Does the same as the above function
-    //     // but listens for the enter key instead.
-    //     let citySearch = $('#city-name').val();
-    //     let key = e.which;
-    //     if(key == 13)  // The enter key code
-    //     {
-    //         cityConverter(citySearch);  
-    //         // function, Close dropdown menu after click
-    //         closeMenu();
-    //     }
-
-    // }); 
-       
+    });      
 });
+
 // Variable with function which activates on click or keydown event.
 let callback = function() {
     // used for the search.
-    let citySearch = $('#city-name').val();
-    cityConverter(citySearch);
+    let pageLoader = false;
+    loader(pageLoader);
     // function, Close dropdown menu after click or keydown enter
     closeMenu();
 }
@@ -315,8 +306,6 @@ function errorMessage(error) {
         $('.error-container').remove();
     }, 7000);
 }
-
-
 // Function for retrieving weather data from SMHI
 function theWeather(latSlice, longSlice) {
     // Ajax request to SMHI

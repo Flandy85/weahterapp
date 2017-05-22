@@ -200,6 +200,10 @@ h6 {
   text-align: center; }
 
 .weather-description {
+  box-sizing: border-box;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -211,12 +215,54 @@ h6 {
       flex-wrap: wrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
+          justify-content: center; }
 
 #weather-wind, #weather-pressure {
   text-align: center;
   padding: 0;
   margin: 5px; }
+
+.loader {
+  -webkit-animation: rotation 4.5s infinite linear;
+          animation: rotation 4.5s infinite linear;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  height: 250px;
+  width: 250px; }
+
+.loader-text {
+  -webkit-animation: blink 5s infinite linear;
+          animation: blink 5s infinite linear;
+  text-align: center; }
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg); } }
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }

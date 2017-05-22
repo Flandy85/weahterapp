@@ -20,6 +20,10 @@
        <p id="weather-pressure"></p>    
     </div>
 
+    <div class="weather-next-hours">
+    
+    </div>
+
 <?php
     require_once 'footer.php';
 ?>

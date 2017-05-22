@@ -1,6 +1,10 @@
 $(document).ready(function() {
-    // Check if browser supports geolocation.
-    function getLocation() {
+    let pageLoader = true;
+    loader(pageLoader);
+});
+
+// Check if browser supports geolocation.
+function getLocation() {
         if (navigator.geolocation) {
             // If browser supports geolocation, get the location
             // and run the userPosition function.
@@ -11,9 +15,6 @@ $(document).ready(function() {
             errorMessage(error);
         }
     }
-    // Run the get location function.
-    getLocation();
-});
 
 // When latitude and longitude is retrieved
 // run the currentCity function, else
@@ -94,4 +95,21 @@ function cityConverter(city) {
         }
 
     });
+}
+
+function loader(pageLoader) {
+
+    $('#theDiv').html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>');
+
+    if(pageLoader) {
+        setTimeout(function(){
+            // Run the get location function.
+            getLocation();
+        }, 500);
+    } else {
+        setTimeout(function(){
+            let citySearch = $('#city-name').val();
+            cityConverter(citySearch);
+        }, 500);
+    }
 }
