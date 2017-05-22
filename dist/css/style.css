@@ -199,9 +199,6 @@ h6 {
   height: 250px;
   width: 250px; }
 
-#theWeather {
-  text-align: center; }
-
 .weather-description {
   display: -webkit-box;
   display: -ms-flexbox;
