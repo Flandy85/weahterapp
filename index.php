@@ -20,9 +20,12 @@
        <p id="weather-pressure"></p>    
     </div>
 
-    <div class="weather-next-hours">
-    
+    <div class="forecast-toggle">
+        <i id="show-forecast" class="fa fa-angle-down" aria-hidden="true"></i>
+        <i id="hide-forecast" class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
+
+    <div id="weather-forecast"></div>
 
 <?php
     require_once 'footer.php';

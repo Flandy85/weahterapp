@@ -41,3 +41,27 @@ function checkTime(i) {
 }
 // Start clock
 startTime();
+
+// Call the open menu function
+$('#show-forecast').click(function() {
+    showForecast();
+});
+
+// Call the close menu function
+$('#hide-forecast').click(function() {
+    hideForecast();
+});
+
+// Open menu
+function showForecast() {
+    $('#show-forecast').hide();
+    $('#hide-forecast').show();
+    $('#weather-forecast').show();
+}
+
+// Close menu
+function hideForecast() {
+    $('#hide-forecast').hide();
+    $('#show-forecast').show();
+    $('#weather-forecast').hide();
+}

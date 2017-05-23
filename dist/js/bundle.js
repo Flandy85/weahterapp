@@ -277,6 +277,30 @@ function checkTime(i) {
 }
 // Start clock
 startTime();
+
+// Call the open menu function
+$('#show-forecast').click(function() {
+    showForecast();
+});
+
+// Call the close menu function
+$('#hide-forecast').click(function() {
+    hideForecast();
+});
+
+// Open menu
+function showForecast() {
+    $('#show-forecast').hide();
+    $('#hide-forecast').show();
+    $('#weather-forecast').show();
+}
+
+// Close menu
+function hideForecast() {
+    $('#hide-forecast').hide();
+    $('#show-forecast').show();
+    $('#weather-forecast').hide();
+}
 // Run function only when page is done loading
 $(document).ready(function(){
     // Click to run search function
@@ -321,11 +345,14 @@ function theWeather(latSlice, longSlice) {
 
 // Function for selecting only the needed
 // weather information.
-function smhiWeather(data, thisYear) {
+function smhiWeather(data, thisYear, forecasting) {
 
-    let year = fullDate(thisYear);
-    let weatherNow = getObjects(data.timeSeries, 'validTime', year);
-
+    let year = fullDate(thisYear),
+        weatherNow = getObjects(data.timeSeries, 'validTime', year),
+        forecastIndex = data.timeSeries.indexOf(weatherNow[0]),
+        forecast = hourlyForecast(forecasting);
+    console.log(weatherNow);
+    console.log(forecast);
     // Visar vilken plats i arrayen objektet har som innehåller
     // datan med vädret för den aktuella timmen. Tänkte att man
     // på något vis med hjälp av det kan försöka välja ut objekten
@@ -349,63 +376,52 @@ function smhiWeather(data, thisYear) {
         }
         return objects;
     }
+
+    function hourlyForecast(forecasting) {
+
+        let weather = data.timeSeries, plusOne = forecastIndex + 1, plusTwo = forecastIndex + 2,
+            plusThree = forecastIndex + 3, plusFour = forecastIndex + 4, plusFive = forecastIndex + 5,
+            plusSix = forecastIndex + 6, plusSeven = forecastIndex + 7, plusEight = forecastIndex + 8,
+            plusNine = forecastIndex + 9, plusTen = forecastIndex + 10;
+
+        return $('#weather-forecast').html(
+                '<div class="forecast-item"><div>' + weather[plusOne].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusOne].parameters[1].values[0]) + '°</div><div>' + weather[plusOne].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusTwo].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusTwo].parameters[1].values[0]) + '°</div><div>' + weather[plusTwo].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusThree].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusThree].parameters[1].values[0]) + '°</div><div>' + weather[plusThree].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusFour].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusFour].parameters[1].values[0]) + '°</div><div>' + weather[plusFour].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusFive].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusFive].parameters[1].values[0]) + '°</div><div>' + weather[plusFive].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusSix].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusSix].parameters[1].values[0]) + '°</div><div>' + weather[plusSix].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusSeven].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusSeven].parameters[1].values[0]) + '°</div><div>' + weather[plusSeven].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusEight].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusEight].parameters[1].values[0]) + '°</div><div>' + weather[plusEight].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusNine].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusNine].parameters[1].values[0]) + '°</div><div>' + weather[plusNine].parameters[18].values[0] + '</div></div>' +
+                '<div class="forecast-item"><div>' + weather[plusTen].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusTen].parameters[1].values[0]) + '°</div><div>' + weather[plusTen].parameters[18].values[0] + '</div></div>');
+    }
+
     let icon = weatherNow[0].parameters[18].values[0];
     // let iconStyles = $('#theImg').css({"widht": "250px;", "height": "250px;"});
     switch(icon) {
-        case 1:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>')
-            break;
-        case 2:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Mest klart</h3>')
-            break;
-        case 3:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/cloud-b.png"/><h3 id="theWeather">Växlande molnighet</h3>')
-            break;
-        case 4:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Halvklart</h3>')
-            break;
-        case 5:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>')
-            break;
-        case 6:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>')
-            break;
-        case 7:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>')
-            break;
-        case 8:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regnskurar</h3>')
-            break;
-        case 9:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åskskurar</h3>')
-            break;
-        case 10:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Byar av snöblandat regn</h3>')
-            break;
-        case 11:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöbyar</h3>')
-            break;
-        case 12:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regn</h3>')
-            break;
-        case 13:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>')
-            break;
-        case 14:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>')
-            break;
-        case 15:
-            $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>')
-            break;
-        
-        default:
-            console.log("Defauuuult");
+        case 1: $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>'); break;
+        case 2: $('#theDiv').html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Mest klart</h3>'); break;
+        case 3: $('#theDiv').html('<img id="theImg" src="images/weathericons/cloud-b.png"/><h3 id="theWeather">Växlande molnighet</h3>'); break;
+        case 4: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Halvklart</h3>'); break;
+        case 5: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>'); break;
+        case 6: $('#theDiv').html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>'); break;
+        case 7: $('#theDiv').html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>'); break;
+        case 8: $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regnskurar</h3>'); break;
+        case 9: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åskskurar</h3>'); break;
+        case 10: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Byar av snöblandat regn</h3>'); break;
+        case 11: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöbyar</h3>'); break;
+        case 12: $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regn</h3>'); break;
+        case 13: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>'); break;
+        case 14: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>'); break;
+        case 15: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>'); break;
+        default: console.log("Defauuuult");
     }
    
-    return $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
-    $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
-    $('#weather-pressure').html('Lufttryck: ' + weatherNow[0].parameters[0].values[0] + " " + weatherNow[0].parameters[0].unit) +
-    $('#symbol').html('Symbol: ' + weatherNow[0].parameters[18].values[0]);
+    return  $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
+            $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
+            $('#weather-pressure').html('Lufttryck: ' + weatherNow[0].parameters[0].values[0] + " " + weatherNow[0].parameters[0].unit) +
+            $('#symbol').html('Symbol: ' + weatherNow[0].parameters[18].values[0]);
        
 }
 
