@@ -20,7 +20,6 @@
     </div>
     <div class="top-bar-spacer"></div>
     <div id="top-menu" class="top-menu">
-        <p>Här skall övriga saker i menyn vara...</p>
         <div class="weather-search">
             <input id="city-name" type="text" name="city" placeholder="Skriv in en stad">
             <button id="search-btn" class="button-search">Sök</button>

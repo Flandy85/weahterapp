@@ -3,9 +3,9 @@ $(document).ready(function(){
     // Click to run search function
     $('#search-btn').click(callback);
     // Press enter to run search function
-    $("#city-name").keypress(function() {
+    $('#city-name').keypress(function() {
         if (event.which === 13) callback();
-    });      
+    });
 }); 
 
 // Variable with function which activates on click or keydown event.

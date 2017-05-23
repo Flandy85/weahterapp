@@ -282,9 +282,9 @@ $(document).ready(function(){
     // Click to run search function
     $('#search-btn').click(callback);
     // Press enter to run search function
-    $("#city-name").keypress(function() {
+    $('#city-name').keypress(function() {
         if (event.which === 13) callback();
-    });      
+    });
 }); 
 
 // Variable with function which activates on click or keydown event.
@@ -326,7 +326,7 @@ function smhiWeather(data, thisYear) {
 
     let year = fullDate(thisYear);
     let weatherNow = getObjects(data.timeSeries, 'validTime', year);
-    
+
     // Function for finding the object contaning the
     // weather information for current hour and return
     // it to the variable weatherNow.
@@ -343,7 +343,6 @@ function smhiWeather(data, thisYear) {
         return objects;
     }
     let icon = weatherNow[0].parameters[18].values[0];
-    console.log(icon);
     // let iconStyles = $('#theImg').css({"widht": "250px;", "height": "250px;"});
     switch(icon) {
         case 1:
