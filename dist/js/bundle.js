@@ -315,7 +315,6 @@ function theWeather(latSlice, longSlice) {
         success: function(data) {
             let widget = smhiWeather(data);
             console.log(data);
-            
         }
     });
 }
@@ -326,6 +325,14 @@ function smhiWeather(data, thisYear) {
 
     let year = fullDate(thisYear);
     let weatherNow = getObjects(data.timeSeries, 'validTime', year);
+
+    // Visar vilken plats i arrayen objektet har som innehåller
+    // datan med vädret för den aktuella timmen. Tänkte att man
+    // på något vis med hjälp av det kan försöka välja ut objekten
+    // som kommer efter utan att behöva veta vad dom heter för att
+    // skriva ut vädret för dom nästkommande timmarna. Har dock inte
+    // kommit längre än såhär just nu.
+    console.log(data.timeSeries.indexOf(weatherNow[0]));
 
     // Function for finding the object contaning the
     // weather information for current hour and return
