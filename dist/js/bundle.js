@@ -1,3 +1,9 @@
+$(document).ready(function(){
+	console.log('mja');
+	setInterval(function () {
+        $('#raindrops').fadeIn(50).delay(50).fadeOut().delay(50).fadeIn(100);
+    }, 5000);
+});
 
 function dayDateMonth(weekDay, monthDay, thisMonth) {
     // Retrieves the day of the week from the function theDay
