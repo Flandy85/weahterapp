@@ -221,7 +221,6 @@ function cityConverter(city) {
 function loader(pageLoader) {
 
     $('#theDiv').html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>');
-
     if(pageLoader) {
         setTimeout(function(){
             // Run the get location function.
@@ -353,6 +352,7 @@ function smhiWeather(data, thisYear, forecasting) {
         forecast = hourlyForecast(forecasting);
     console.log(weatherNow);
     console.log(forecast);
+
     // Visar vilken plats i arrayen objektet har som innehåller
     // datan med vädret för den aktuella timmen. Tänkte att man
     // på något vis med hjälp av det kan försöka välja ut objekten

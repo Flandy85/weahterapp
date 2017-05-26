@@ -22,6 +22,7 @@ function smhiWeather(data, thisYear, forecasting) {
         forecast = hourlyForecast(forecasting);
     console.log(weatherNow);
     console.log(forecast);
+
     // Visar vilken plats i arrayen objektet har som innehåller
     // datan med vädret för den aktuella timmen. Tänkte att man
     // på något vis med hjälp av det kan försöka välja ut objekten

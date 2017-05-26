@@ -100,7 +100,6 @@ function cityConverter(city) {
 function loader(pageLoader) {
 
     $('#theDiv').html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>');
-
     if(pageLoader) {
         setTimeout(function(){
             // Run the get location function.
