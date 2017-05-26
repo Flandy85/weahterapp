@@ -223,7 +223,7 @@ function cityConverter(city) {
 
     });
 }
-
+// Function giving feedback to user that page is loading
 function loader(pageLoader) {
 
     $('#theDiv').html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>');
@@ -478,7 +478,7 @@ function fullDate(thisYear) {
     }
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
 }
-// function adding black border around text
+// function adding black border around text 
 function smhiShow() {
     return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
     
