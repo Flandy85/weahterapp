@@ -300,3 +300,18 @@ h6 {
         align-self: center;
     text-align: center;
     width: 33%; }
+
+.forecast-weather {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around; }
+  .forecast-weather img {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    height: 30px;
+    width: 30px; }

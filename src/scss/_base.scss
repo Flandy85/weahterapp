@@ -307,3 +307,14 @@ h6 {
         width: 33%;
     }
 }
+
+.forecast-weather {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    img {
+        align-self: center;
+        height: 30px;
+        width: 30px;
+    }
+}
