@@ -2,7 +2,7 @@ $(document).ready(function(){
 	setInterval(function () {
         $('#raindrops').fadeIn(50).delay(50).fadeOut().delay(50).fadeIn(100);
     }, 5000);
-
+	console.log("animation.js")
 });
 
 function dayDateMonth(weekDay, monthDay, thisMonth) {
@@ -432,7 +432,7 @@ function smhiWeather(data, thisYear, forecasting) {
         switch(icon) {
             case 1: $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>'); break;
             case 2: $('#theDiv').html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Mest klart</h3>'); break;
-            case 3: $('#theDiv').html('<img id="theImg" src="images/weathericons/cloud-b.png"/><h3 id="theWeather">Växlande molnighet</h3>'); break;
+            case 3: $('#theDiv').html('<object id="theImg" type="image/svg+xml" data="images/weathericons/overcast-b.svg"></object><h3 id="theWeather">Växlande molnighet</h3>'); break;
             case 4: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Halvklart</h3>'); break;
             case 5: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>'); break;
             case 6: $('#theDiv').html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>'); break;
@@ -477,7 +477,7 @@ function fullDate(thisYear) {
     }
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
 }
-// function adding black border around text  
+// function adding black border around tex
 function smhiShow() {
     return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
     
