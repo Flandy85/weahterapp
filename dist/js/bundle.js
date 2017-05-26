@@ -330,7 +330,6 @@ function theWeather(latSlice, longSlice) {
         datsType: 'jsonp',
         success: function(data) {
             let widget = smhiWeather(data);
-            console.log(data);
         }
     });
 }
