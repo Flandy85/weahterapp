@@ -20,7 +20,6 @@
            <p id="weather-pressure"></p>    
         </div>
 
-<<<<<<< HEAD
     <div class="date-container">
         <p id="city"></p>
         <p id="date"></p>
@@ -97,16 +96,7 @@
             <div class="forecast-weather forecast-weather-10"></div>
         </div>
     </div> <!-- End weather-forecast -->
-=======
-        <div class="forecast-toggle">
-            <i id="show-forecast" class="fa fa-angle-down" aria-hidden="true"></i>
-            <i id="hide-forecast" class="fa fa-angle-up" aria-hidden="true"></i>
-        </div>
     </main>
-    <aside>
-        <div id="weather-forecast"></div>
-    </aside>
->>>>>>> e2073070baef124c20604e597c14e3a798cd1e33
 
 <?php
     require_once 'footer.php';

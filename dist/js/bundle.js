@@ -368,7 +368,6 @@ function smhiWeather(data, thisYear, forecasting) {
             plusNine = forecastIndex + 9, plusTen = forecastIndex + 10, weatherLoop, forecastWeather = 0,
             hr = (new Date()).getHours();
 
-<<<<<<< HEAD
             for (i = forecastIndex; i < forecastIndex + 10 || forecastIndex == 10 ; i++) { 
 
                 weatherLoop = weather[i].parameters[18].values[0];
@@ -412,7 +411,7 @@ function smhiWeather(data, thisYear, forecasting) {
                         case 14: weatherLoop = '<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
                         case 15: weatherLoop = '<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
                     } // End switch statement night
-                }
+                } // End else
                 $('.forecast-weather-' + forecastWeather).html(weatherLoop);
             } // End for loop
         return  $('.forecast-time-1').html(weather[plusOne].validTime.slice(11, 16)) + $('.forecast-temp-1').html(Math.round(weather[plusOne].parameters[1].values[0]) + '°') +
@@ -426,20 +425,6 @@ function smhiWeather(data, thisYear, forecasting) {
                 $('.forecast-time-9').html(weather[plusNine].validTime.slice(11, 16)) + $('.forecast-temp-9').html(Math.round(weather[plusNine].parameters[1].values[0]) + '°') +
                 $('.forecast-time-10').html(weather[plusTen].validTime.slice(11, 16)) + $('.forecast-temp-10').html(Math.round(weather[plusTen].parameters[1].values[0]) + '°');
     } // End hourlyForecast
-=======
-        return $('#weather-forecast').html(
-                '<div class="forecast-item"><div>' + weather[plusOne].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusOne].parameters[1].values[0]) + '°</div><div>' + weather[plusOne].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusTwo].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusTwo].parameters[1].values[0]) + '°</div><div>' + weather[plusTwo].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusThree].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusThree].parameters[1].values[0]) + '°</div><div>' + weather[plusThree].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusFour].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusFour].parameters[1].values[0]) + '°</div><div>' + weather[plusFour].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusFive].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusFive].parameters[1].values[0]) + '°</div><div>' + weather[plusFive].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusSix].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusSix].parameters[1].values[0]) + '°</div><div>' + weather[plusSix].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusSeven].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusSeven].parameters[1].values[0]) + '°</div><div>' + weather[plusSeven].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusEight].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusEight].parameters[1].values[0]) + '°</div><div>' + weather[plusEight].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusNine].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusNine].parameters[1].values[0]) + '°</div><div>' + weather[plusNine].parameters[18].values[0] + '</div></div>' +
-                '<div class="forecast-item"><div>' + weather[plusTen].validTime.slice(11, 16) + '</div><div>' + Math.round(weather[plusTen].parameters[1].values[0]) + '°</div><div>' + weather[plusTen].parameters[18].values[0] + '</div></div>');
-    }
->>>>>>> e2073070baef124c20604e597c14e3a798cd1e33
 
     let icon = weatherNow[0].parameters[18].values[0];
     let hr = (new Date()).getHours();
@@ -463,7 +448,7 @@ function smhiWeather(data, thisYear, forecasting) {
             case 13: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>'); break;
             case 14: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>'); break;
             case 15: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>'); break;
-        }
+        } // End night
     } else {
         // Day
         switch(icon) {
@@ -482,8 +467,8 @@ function smhiWeather(data, thisYear, forecasting) {
             case 13: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>'); break;
             case 14: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>'); break;
             case 15: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>'); break;
-        }
-    }
+        } //End day
+    } // End else
    
     return  $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
             $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
@@ -512,14 +497,9 @@ function fullDate(thisYear) {
         time = '0' + time;
     }
     return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
-<<<<<<< HEAD
 } // End fullDate
 
-// function adding black border around text
-=======
-}
 // function adding black border around tex
->>>>>>> e2073070baef124c20604e597c14e3a798cd1e33
 function smhiShow() {
     return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
     
