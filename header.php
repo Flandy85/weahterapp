@@ -9,19 +9,21 @@
     <title>The Lost Three Weatherapp</title>
 </head>
 <body>
-    <div class="top-bar">
-        <div class="top-bar__menu-icons top-bar__item">
-            <i id="open-menu" class="fa fa-bars" aria-hidden="true"></i>
-            <i id="close-menu" class="fa fa-times" aria-hidden="true"></i>
+    <header>
+        <div class="top-bar">
+            <div class="top-bar__menu-icons top-bar__item">
+                <i id="open-menu" class="fa fa-bars" aria-hidden="true"></i>
+                <i id="close-menu" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div class="clock top-bar__item">
+                <p id="time"></p>
+            </div>
         </div>
-        <div class="clock top-bar__item">
-            <p id="time"></p>
+        <div class="top-bar-spacer"></div>
+        <div id="top-menu" class="top-menu">
+            <div class="weather-search">
+                <input id="city-name" type="text" name="city" placeholder="Skriv in en stad">
+                <button id="search-btn" class="button-search">Sök</button>
+            </div>
         </div>
-    </div>
-    <div class="top-bar-spacer"></div>
-    <div id="top-menu" class="top-menu">
-        <div class="weather-search">
-            <input id="city-name" type="text" name="city" placeholder="Skriv in en stad">
-            <button id="search-btn" class="button-search">Sök</button>
-        </div>
-    </div>
+    </header>
