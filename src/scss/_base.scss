@@ -298,7 +298,12 @@ h6 {
     margin: 0 auto;
     padding: 3px;
     width: 90%;
+    &:first-child {
+        border-top: 0;
+    }
     div {
         align-self: center;
+        text-align: center;
+        width: 33%;
     }
 }

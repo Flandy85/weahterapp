@@ -296,6 +296,10 @@ h6 {
   margin: 0 auto;
   padding: 3px;
   width: 90%; }
+  .forecast-item:first-child {
+    border-top: 0; }
   .forecast-item div {
     -ms-flex-item-align: center;
-        align-self: center; }
+        align-self: center;
+    text-align: center;
+    width: 33%; }
