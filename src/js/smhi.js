@@ -50,25 +50,6 @@ function smhiWeather(data, thisYear, forecasting) {
                 forecastWeather++;
 
                 if(hr == 0 || hr == 1 || hr == 2 || hr == 3 || hr == 4 || hr == 22 || hr == 23) {
-                    // Day
-                    switch(weatherLoop) {
-                        case 1: weatherLoop = '<div>Klart</div><img class="forecast-icon" src="images/weathericons/sun-b.png"/>'; break;
-                        case 2: weatherLoop = '<div>Mest klart</div><img class="forecast-icon" src="images/weathericons/nearly-clear-sky-b.png"/>'; break;
-                        case 3: weatherLoop = '<div>Växlande molnighet</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>'; break;
-                        case 4: weatherLoop = '<div>Halvklart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-b.png"/>'; break;
-                        case 5: weatherLoop = '<div>Målnigt</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>'; break;
-                        case 6: weatherLoop = '<div>Mulet</div><img class="forecast-icon" src="images/weathericons/overcast-b.png"/>'; break;
-                        case 7: weatherLoop = '<div>Dimma</div><img class="forecast-icon" src="images/weathericons/fog-b.png"/>'; break;
-                        case 8: weatherLoop = '<div>Regnskurar</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
-                        case 9: weatherLoop = '<div>Åskskurar</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
-                        case 10: weatherLoop = '<div>Byar av snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 11: weatherLoop = '<div>Snöbyar</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 12: weatherLoop = '<div>Regn</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
-                        case 13: weatherLoop = '<div>Åska</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
-                        case 14: weatherLoop = '<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 15: weatherLoop = '<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                    } // End switch statement day
-                } else {
                     // Night
                     switch(weatherLoop) {
                         case 1: weatherLoop = '<div>Klart</div><img class="forecast-icon" src="images/weathericons/moon-b.png"/>'; break;
@@ -87,6 +68,25 @@ function smhiWeather(data, thisYear, forecasting) {
                         case 14: weatherLoop = '<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
                         case 15: weatherLoop = '<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
                     } // End switch statement night
+                } else {
+                    // Day
+                    switch(weatherLoop) {
+                        case 1: weatherLoop = '<div>Klart</div><img class="forecast-icon" src="images/weathericons/sun-b.png"/>'; break;
+                        case 2: weatherLoop = '<div>Mest klart</div><img class="forecast-icon" src="images/weathericons/nearly-clear-sky-b.png"/>'; break;
+                        case 3: weatherLoop = '<div>Växlande molnighet</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>'; break;
+                        case 4: weatherLoop = '<div>Halvklart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-b.png"/>'; break;
+                        case 5: weatherLoop = '<div>Målnigt</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>'; break;
+                        case 6: weatherLoop = '<div>Mulet</div><img class="forecast-icon" src="images/weathericons/overcast-b.png"/>'; break;
+                        case 7: weatherLoop = '<div>Dimma</div><img class="forecast-icon" src="images/weathericons/fog-b.png"/>'; break;
+                        case 8: weatherLoop = '<div>Regnskurar</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
+                        case 9: weatherLoop = '<div>Åskskurar</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
+                        case 10: weatherLoop = '<div>Byar av snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
+                        case 11: weatherLoop = '<div>Snöbyar</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
+                        case 12: weatherLoop = '<div>Regn</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
+                        case 13: weatherLoop = '<div>Åska</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
+                        case 14: weatherLoop = '<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
+                        case 15: weatherLoop = '<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
+                    } // End switch statement day
                 } // End else
                 $('.forecast-weather-' + forecastWeather).html(weatherLoop);
             } // End for loop
