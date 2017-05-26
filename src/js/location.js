@@ -96,7 +96,7 @@ function cityConverter(city) {
 
     });
 }
-
+// Function giving feedback to user that page is loading
 function loader(pageLoader) {
 
     $('#theDiv').html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>');
