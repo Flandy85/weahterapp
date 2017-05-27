@@ -27,7 +27,7 @@ function theDay(weekDay) {
         case 3: day = "Onsdag"; break;
         case 4: day = "Torsdag"; break;
         case 5: day = "Fredag"; break;
-        case  6: day = "Lördag";
+        case 6: day = "Lördag";
     }
     return day;
 }
