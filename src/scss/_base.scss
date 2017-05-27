@@ -304,17 +304,20 @@ h6 {
     div {
         align-self: center;
         text-align: center;
-        width: 32%;
+        width: 33%;
     }
 }
 
 .forecast-weather {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
+    div {
+        width: 100%;
+    }
     img {
-        align-self: flex-end;
-        margin-left: 49px;
+        align-self: center;
         height: 30px;
         width: 30px;
     }
