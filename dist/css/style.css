@@ -302,7 +302,7 @@ h6 {
     -ms-flex-item-align: center;
         align-self: center;
     text-align: center;
-    width: 33%; }
+    width: 32%; }
 
 .forecast-weather {
   display: -webkit-box;
@@ -313,8 +313,8 @@ h6 {
   -ms-flex-pack: distribute;
       justify-content: space-around; }
   .forecast-weather img {
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin-left: 49px;
     height: 30px;
     width: 30px; }
