@@ -72,7 +72,7 @@ return $("#temp-now").html(" "+Math.round(r[0].parameters[1].values[0])+"°")+$(
 // needed for the getObjects function.
 function fullDate(e){var a=new Date,t=a.getFullYear(),s=a.getMonth(),i=a.getDate(),r=a.getHours();return s+=1,s<10&&(s="0"+s),i<10&&(i="0"+i),r<10&&(r="0"+r),t+"-"+s+"-"+i+"T"+r+":00:00Z"}// End fullDate
 // function adding black border around tex
-function smhiShow(){return'<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss '+data+"</h2>"}var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};$(document).ready(function(){setInterval(function(){$("#raindrops").fadeIn(50).delay(50).fadeOut().delay(50).fadeIn(100)},5e3),console.log("animation.js")}),dayDateMonth(),$(document).ready(function(){loader(!0)}),
+function smhiShow(){return'<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss '+data+"</h2>"}var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};dayDateMonth(),$(document).ready(function(){loader(!0)}),
 // Call the open menu function
 $("#open-menu").click(function(){openMenu()}),
 // Call the close menu function
