@@ -2,12 +2,13 @@ var gulp = require('gulp');
 
 // Plugins
 // ************************************************************
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var bs = require('browser-sync').create();
-var gutil = require('gulp-util');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const concat = require('gulp-concat');
+const bs = require('browser-sync').create();
+const gutil = require('gulp-util');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 // ************************************************************
 
 
@@ -24,8 +25,9 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
     return gulp.src('./src/js/**/*.js')
             .pipe(concat('bundle.js'))
-            // .pipe(uglify())
-            .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
+            .pipe(babel({presets: ['es2015']}))
+            .pipe(uglify({ preserveComments: 'all'}))
+            .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()) })
             .pipe(gulp.dest('./dist/js'));
 });
 
