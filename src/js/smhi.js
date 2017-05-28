@@ -44,7 +44,7 @@ function smhiWeather(data, thisYear, forecasting) {
             plusNine = forecastIndex + 9, plusTen = forecastIndex + 10, weatherLoop, forecastWeather = 0,
             hr = (new Date()).getHours();
 
-            for (i = forecastIndex; i < forecastIndex + 10 || forecastIndex == 10 ; i++) { 
+            for ( var i = forecastIndex; i < forecastIndex + 10 || forecastIndex == 10 ; i++) { 
 
                 weatherLoop = weather[i].parameters[18].values[0];
                 forecastWeather++;

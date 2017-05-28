@@ -4,10 +4,11 @@ var gulp = require('gulp');
 // ************************************************************
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var bs = require('browser-sync').create();
 var gutil = require('gulp-util');
+var babel = require('gulp-babel');
+var uglify = require('gulp-uglify');
 // ************************************************************
 
 
@@ -24,7 +25,8 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
     return gulp.src('./src/js/**/*.js')
             .pipe(concat('bundle.js'))
-            // .pipe(uglify())
+            .pipe(babel({presets: ['es2015']}))
+            .pipe(uglify({preserveComments: 'all'}))
             .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
             .pipe(gulp.dest('./dist/js'));
 });

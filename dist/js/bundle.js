@@ -1,464 +1,95 @@
-$(document).ready(function(){
-	setInterval(function () {
-        $('#raindrops').fadeIn(50).delay(50).fadeOut().delay(50).fadeIn(100);
-    }, 5000);
-	console.log("animation.js")
-});
-
-function dayDateMonth(weekDay, monthDay, thisMonth) {
-    // Retrieves the day of the week from the function theDay
-    let day = theDay(weekDay);
-    let date = theDate(monthDay);
-    let month = theMonth(thisMonth);
-
-    $('#date').html(day + ' ' + month + '/' + date);
-
-    // Update every 10 seconds
-    let updateDate = setTimeout(dayDateMonth, 10000);
-}
-
+"use strict";function dayDateMonth(e,a,t){
+// Retrieves the day of the week from the function theDay
+var s=theDay(e),i=theDate(a),r=theMonth(t);$("#date").html(s+" "+r+"/"+i);
+// Update every 10 seconds
+setTimeout(dayDateMonth,1e4)}
 // Returns the day of the week to the variable day
-function theDay(weekDay) {
-    let day;
-    switch (new Date().getDay()) {
-        case 0: day = "Söndag"; break;
-        case 1: day = "Måndag"; break;
-        case 2: day = "Tisdag"; break;
-        case 3: day = "Onsdag"; break;
-        case 4: day = "Torsdag"; break;
-        case 5: day = "Fredag"; break;
-        case 6: day = "Lördag";
-    }
-    return day;
-}
-
+function theDay(e){var a=void 0;switch((new Date).getDay()){case 0:a="Söndag";break;case 1:a="Måndag";break;case 2:a="Tisdag";break;case 3:a="Onsdag";break;case 4:a="Torsdag";break;case 5:a="Fredag";break;case 6:a="Lördag"}return a}
 // Returns the day of the month to the variable date
-function theDate(monthDay) {
-    let d = new Date();
-    let date = d.getDate();
-    return date;
-}
-
+function theDate(e){return(new Date).getDate()}
 // Returns the month to the variable month
-function theMonth(thisMonth) {
-    let m = new Date();
-    let mm = m.getMonth();
-    let month = mm + 1;
-
-    if(month < 10) {
-        month = '0' + month;
-        return month;
-    } else {
-        return month;
-    }
-}
-
-dayDateMonth();
-
-function flickrImg(city) {
-    
-    // var bla = $('.txt_name').val();
-    $.ajax('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=dd19ed51d6cdbcda479e49d09494285a&tags=' + city + '&extras=url_l&per_page=1&page=1&format=json', { dataType: 'jsonp', jsonp: 'jsoncallback' })
-    .then(function(data, status, xhr) {
-        //console.log(data);
-        $('body').css({"background": "url(" + data.photos.photo[0].url_l + ")",
-    "background-size": "cover",
-    "background-repeat": "no-repeat"});
-       // console.log('success (promises): ' + data[0]);
-    }, function(xhr, status, error) {
-        console.log('failed (promises): ' + error);
-    });
-
-}
-
-$(document).ready(function() {
-    let pageLoader = true;
-    loader(pageLoader);
-});
-
+function theMonth(e){var a=new Date,t=a.getMonth(),s=t+1;return s<10?s="0"+s:s}
+// Function fetching image from flicker and displays it as background
+function flickrImg(e){$.ajax("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=dd19ed51d6cdbcda479e49d09494285a&tags="+e+"&extras=url_l&per_page=1&page=1&format=json",{dataType:"jsonp",jsonp:"jsoncallback"}).then(function(e,a,t){$("body").css({background:"url("+e.photos.photo[0].url_l+")","background-size":"cover","background-repeat":"no-repeat"})},function(e,a,t){console.log("failed (promises): "+t)})}
 // Check if browser supports geolocation.
-function getLocation() {
-        if (navigator.geolocation) {
-            // If browser supports geolocation, get the location
-            // and run the userPosition function.
-            navigator.geolocation.getCurrentPosition(userPosition);
-        } else {
-            // Error message if the browser doesn't support geolocation.
-            let error = 'Den här webbläsaren stödjer inte geolocation!';
-            errorMessage(error);
-        }
-    }
-
+function getLocation(){if(navigator.geolocation)
+// If browser supports geolocation, get the location
+// and run the userPosition function.
+navigator.geolocation.getCurrentPosition(userPosition);else{errorMessage("Den här webbläsaren stödjer inte geolocation!")}}
 // When latitude and longitude is retrieved
 // run the currentCity function, else
 // print error message.
-function userPosition(position) {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
-
-    if(lat != '' && long != '') {
-        currentCity(lat, long);
-    } else {
-        let error = 'Kunde inte ladda din position!';
-        errorMessage(error);
-    }
-}
-
+function userPosition(e){var a=e.coords.latitude,t=e.coords.longitude;if(""!=a&&""!=t)currentCity(a,t);else{errorMessage("Kunde inte ladda din position!")}}
 // Ajax call to google API wich retrieves the current
 // city based on the coordinates.
-function currentCity (lat, long) {
-    $.ajax({
-
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&key=AIzaSyBMXeJ760fwv3AyO4sAVZpZjcCjoYPuTvs',
-        type: 'GET',
-        datsType: 'jsonp',
-        success: function(data) {
-            let city = getTheCity(data);
-            // Runs the cityConverter function with the city as a parameter.
-            cityConverter(city);
-            flickrImg(city); 
-        }
-    });
-}
-
+function currentCity(e,a){$.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?latlng="+e+","+a+"&key=AIzaSyBMXeJ760fwv3AyO4sAVZpZjcCjoYPuTvs",type:"GET",datsType:"jsonp",success:function(e){var a=getTheCity(e);
+// Runs the cityConverter function with the city as a parameter.
+cityConverter(a),flickrImg(a)}})}
 // Retrieves the current city from the JSON object and
 // return it to the widget variable.
-function getTheCity (data) {
-    return data.results[0].address_components[4].long_name;
-}
-
-function cityConverter(city) {
-    $('.error').html('');
-    $.ajax({
-
-        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyDpZWJC15Lusfe5_B1TLoYEHzZVtZLSPVw',
-        type: 'GET',
-        datsType: 'jsonp',
-        success: function(data) {
-
-            let googleCity = data.results[0].address_components[0].long_name;
-
-            if(googleCity.toLowerCase() == city.toLowerCase()) {
-                convertCity();
-                flickrImg(googleCity);
-                $('#city').html(googleCity);
-            } else {
-                $('#city').html('');
-                let error = 'Inga resultat hittades för: ' + city;
-                errorMessage(error);
-            }
-
-            function convertCity() {
-                let lat = data.results[0].geometry.location.lat,
-                    long = data.results[0].geometry.location.lng;
-
-                let latString = lat.toString(),
-                    longString = long.toString();
-
-                let latSlice = latString.slice(0, 9),
-                    longSlice = longString.slice(0, 9);
-
-                if(latSlice != '' && longSlice != '') {
-                    theWeather(latSlice, longSlice);
-                } else {
-                    let error = 'Kunde inte ladda din position!';
-                    errorMessage(error);
-                }
-            }
-        }
-
-    });
-}
+function getTheCity(e){return e.results[0].address_components[4].long_name}function cityConverter(e){$(".error").html(""),$.ajax({url:"https://maps.googleapis.com/maps/api/geocode/json?address="+e+"&key=AIzaSyDpZWJC15Lusfe5_B1TLoYEHzZVtZLSPVw",type:"GET",datsType:"jsonp",success:function(a){var t=a.results[0].address_components[0].long_name;if(t.toLowerCase()==e.toLowerCase())!function(){var e=a.results[0].geometry.location.lat,t=a.results[0].geometry.location.lng,s=e.toString(),i=t.toString(),r=s.slice(0,9),c=i.slice(0,9);""!=r&&""!=c?theWeather(r,c):errorMessage("Kunde inte ladda din position!")}(),flickrImg(t),$("#city").html(t);else{$("#city").html("");errorMessage("Inga resultat hittades för: "+e)}}})}
 // Function giving feedback to user that page is loading
-function loader(pageLoader) {
-
-    $('#theDiv').html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>');
-    if(pageLoader) {
-        setTimeout(function(){
-            // Run the get location function.
-            getLocation();
-        }, 500);
-    } else {
-        setTimeout(function(){
-            let citySearch = $('#city-name').val();
-            cityConverter(citySearch);
-        }, 500);
-    }
-}
-// Call the open menu function
-$('#open-menu').click(function() {
-    openMenu();
-});
-
-// Call the close menu function
-$('#close-menu').click(function() {
-    closeMenu();
-});
-
+function loader(e){$("#theDiv").html('<img class="loader" src="images/icons/loading_icon.png"/><h3 class="loader-text">Laddar</h3>'),e?setTimeout(function(){
+// Run the get location function.
+getLocation()},500):setTimeout(function(){cityConverter($("#city-name").val())},500)}
 // Open menu
-function openMenu() {
-    $('#open-menu').hide();
-    $('#close-menu').show();
-    $('#top-menu').show();
-    $('.top-bar').css('background-color', 'rgba(255,255,255, 0.9)'); 
-}
-
+function openMenu(){$("#open-menu").hide(),$("#close-menu").show(),$("#top-menu").show(),$(".top-bar").css("background-color","rgba(255,255,255, 0.9)")}
 // Close menu
-function closeMenu() {
-    $('#close-menu').hide();
-    $('#open-menu').show();
-    $('#top-menu').hide();
-    $('.top-bar').css('background-color', '');
-}
-
+function closeMenu(){$("#close-menu").hide(),$("#open-menu").show(),$("#top-menu").hide(),$(".top-bar").css("background-color","")}
 // Clock function
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    h = checkTime(h);
-    m = checkTime(m);
-    $('#time').html(h + ':' + m);
-    var t = setTimeout(startTime, 500);
-}
+function startTime(){var e=new Date,a=e.getHours(),t=e.getMinutes();a=checkTime(a),t=checkTime(t),$("#time").html(a+":"+t);setTimeout(startTime,500)}
 // Add zero in front of numbers < 10
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};
-    return i;
-}
-// Start clock
-startTime();
-
-// Call the open menu function
-$('#show-forecast').click(function() {
-    showForecast();
-});
-
-// Call the close menu function
-$('#hide-forecast').click(function() {
-    hideForecast();
-});
-
+function checkTime(e){return e<10&&(e="0"+e),e}
 // Open menu
-function showForecast() {
-    $('#show-forecast').hide();
-    $('#hide-forecast').show();
-    $('#weather-forecast').show();
-}
-
+function showForecast(){$("#show-forecast").hide(),$("#hide-forecast").show(),$("#weather-forecast").show()}
 // Close menu
-function hideForecast() {
-    $('#hide-forecast').hide();
-    $('#show-forecast').show();
-    $('#weather-forecast').hide();
-}
-// Run function only when page is done loading
-$(document).ready(function(){
-    // Click to run search function
-    $('#search-btn').click(callback);
-    // Press enter to run search function
-    $('#city-name').keypress(function() {
-        if (event.which === 13) callback();
-    });
-}); 
-
-// Variable with function which activates on click or keydown event.
-let callback = function() {
-    // used for the search.
-    let pageLoader = false;
-    loader(pageLoader);
-    // function, Close dropdown menu after click or keydown enter
-    closeMenu();
-}
-
-function errorMessage(error) {
-    	
-    $('<div class="error-container"><p class="error">' + error + '</p></div>').insertAfter( "#top-menu" );
-    $('#temp-now').html('');
-    $('body').css( "background", "" );
-    setTimeout(function(errorMessage) {
-        $('.error-container').remove();
-    }, 7000);
-}
+function hideForecast(){$("#hide-forecast").hide(),$("#show-forecast").show(),$("#weather-forecast").hide()}function errorMessage(e){$('<div class="error-container"><p class="error">'+e+"</p></div>").insertAfter("#top-menu"),$("#temp-now").html(""),$("body").css("background",""),setTimeout(function(e){$(".error-container").remove()},7e3)}
 // Function for retrieving weather data from SMHI
-function theWeather(latSlice, longSlice) {
-    // Ajax request to SMHI
-    $.ajax({
-        url: 'https://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/' + longSlice + '/lat/' + latSlice + '/data.json',
-        type: 'GET',
-        datsType: 'jsonp',
-        success: function(data) {
-            let widget = smhiWeather(data);
-        }
-    });
-}
-
+function theWeather(e,a){
+// Ajax request to SMHI
+$.ajax({url:"https://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/"+a+"/lat/"+e+"/data.json",type:"GET",datsType:"jsonp",success:function(e){smhiWeather(e)}})}
 // Function for selecting only the needed
 // weather information.
-function smhiWeather(data, thisYear, forecasting) {
-
-    let year = fullDate(thisYear),
-        weatherNow = getObjects(data.timeSeries, 'validTime', year),
-        forecastIndex = data.timeSeries.indexOf(weatherNow[0]),
-        forecast = hourlyForecast(forecasting);
-
-    // Function for finding the object contaning the
-    // weather information for current hour and return
-    // it to the variable weatherNow.
-    function getObjects(obj, key, val) {
-        var objects = [];
-        for (var i in obj) {
-            if (!obj.hasOwnProperty(i)) continue;
-            if (typeof obj[i] == 'object') {
-                objects = objects.concat(getObjects(obj[i], key, val));
-            } else if (i == key && obj[key] == val) {
-                objects.push(obj);
-            }
-        }
-        return objects;
-    }
-
-    function hourlyForecast(forecasting) {
-
-        let weather = data.timeSeries, plusOne = forecastIndex + 1, plusTwo = forecastIndex + 2,
-            plusThree = forecastIndex + 3, plusFour = forecastIndex + 4, plusFive = forecastIndex + 5,
-            plusSix = forecastIndex + 6, plusSeven = forecastIndex + 7, plusEight = forecastIndex + 8,
-            plusNine = forecastIndex + 9, plusTen = forecastIndex + 10, weatherLoop, forecastWeather = 0,
-            hr = (new Date()).getHours();
-
-            for (i = forecastIndex; i < forecastIndex + 10 || forecastIndex == 10 ; i++) { 
-
-                weatherLoop = weather[i].parameters[18].values[0];
-                forecastWeather++;
-
-                if(hr == 0 || hr == 1 || hr == 2 || hr == 3 || hr == 4 || hr == 22 || hr == 23) {
-                    // Night
-                    switch(weatherLoop) {
-                        case 1: weatherLoop = '<div>Klart</div><img class="forecast-icon" src="images/weathericons/moon-b.png"/>'; break;
-                        case 2: weatherLoop = '<div>Mest klart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-night-b.png"/>'; break;
-                        case 3: weatherLoop = '<div>Växlande molnighet</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-night-b.png"/>'; break;
-                        case 4: weatherLoop = '<div>Halvklart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-night-b.png"/>'; break;
-                        case 5: weatherLoop = '<div>Målnigt</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>'; break;
-                        case 6: weatherLoop = '<div>Mulet</div><img class="forecast-icon" src="images/weathericons/overcast-b.png"/>'; break;
-                        case 7: weatherLoop = '<div>Dimma</div><img class="forecast-icon" src="images/weathericons/fog-b.png"/>'; break;
-                        case 8: weatherLoop = '<div>Regnskurar</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
-                        case 9: weatherLoop = '<div>Åskskurar</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
-                        case 10: weatherLoop = '<div>Byar av snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 11: weatherLoop = '<div>Snöbyar</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 12: weatherLoop = '<div>Regn</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
-                        case 13: weatherLoop = '<div>Åska</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
-                        case 14: weatherLoop = '<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 15: weatherLoop = '<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                    } // End switch statement night
-                } else {
-                    // Day
-                    switch(weatherLoop) {
-                        case 1: weatherLoop = '<div>Klart</div><img class="forecast-icon" src="images/weathericons/sun-b.png"/>'; break;
-                        case 2: weatherLoop = '<div>Mest klart</div><img class="forecast-icon" src="images/weathericons/nearly-clear-sky-b.png"/>'; break;
-                        case 3: weatherLoop = '<div>Växlande molnighet</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>'; break;
-                        case 4: weatherLoop = '<div>Halvklart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-b.png"/>'; break;
-                        case 5: weatherLoop = '<div>Målnigt</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>'; break;
-                        case 6: weatherLoop = '<div>Mulet</div><img class="forecast-icon" src="images/weathericons/overcast-b.png"/>'; break;
-                        case 7: weatherLoop = '<div>Dimma</div><img class="forecast-icon" src="images/weathericons/fog-b.png"/>'; break;
-                        case 8: weatherLoop = '<div>Regnskurar</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
-                        case 9: weatherLoop = '<div>Åskskurar</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
-                        case 10: weatherLoop = '<div>Byar av snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 11: weatherLoop = '<div>Snöbyar</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 12: weatherLoop = '<div>Regn</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>'; break;
-                        case 13: weatherLoop = '<div>Åska</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>'; break;
-                        case 14: weatherLoop = '<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                        case 15: weatherLoop = '<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'; break;
-                    } // End switch statement day
-                } // End else
-                $('.forecast-weather-' + forecastWeather).html(weatherLoop);
-            } // End for loop
-        return  $('.forecast-time-1').html(weather[plusOne].validTime.slice(11, 16)) + $('.forecast-temp-1').html(Math.round(weather[plusOne].parameters[1].values[0]) + '°') +
-                $('.forecast-time-2').html(weather[plusTwo].validTime.slice(11, 16)) + $('.forecast-temp-2').html(Math.round(weather[plusTwo].parameters[1].values[0]) + '°') +
-                $('.forecast-time-3').html(weather[plusThree].validTime.slice(11, 16)) + $('.forecast-temp-3').html(Math.round(weather[plusThree].parameters[1].values[0]) + '°') +
-                $('.forecast-time-4').html(weather[plusFour].validTime.slice(11, 16)) + $('.forecast-temp-4').html(Math.round(weather[plusFour].parameters[1].values[0]) + '°') +
-                $('.forecast-time-5').html(weather[plusFive].validTime.slice(11, 16)) + $('.forecast-temp-5').html(Math.round(weather[plusFive].parameters[1].values[0]) + '°') +
-                $('.forecast-time-6').html(weather[plusSix].validTime.slice(11, 16)) + $('.forecast-temp-6').html(Math.round(weather[plusSix].parameters[1].values[0]) + '°') +
-                $('.forecast-time-7').html(weather[plusSeven].validTime.slice(11, 16)) + $('.forecast-temp-7').html(Math.round(weather[plusSeven].parameters[1].values[0]) + '°') +
-                $('.forecast-time-8').html(weather[plusEight].validTime.slice(11, 16)) + $('.forecast-temp-8').html(Math.round(weather[plusEight].parameters[1].values[0]) + '°') +
-                $('.forecast-time-9').html(weather[plusNine].validTime.slice(11, 16)) + $('.forecast-temp-9').html(Math.round(weather[plusNine].parameters[1].values[0]) + '°') +
-                $('.forecast-time-10').html(weather[plusTen].validTime.slice(11, 16)) + $('.forecast-temp-10').html(Math.round(weather[plusTen].parameters[1].values[0]) + '°');
-    } // End hourlyForecast
-
-    let icon = weatherNow[0].parameters[18].values[0];
-    let hr = (new Date()).getHours();
-
-    // If it's night it displays different icons in the switch statement
-    if(hr == 0 || hr == 1 || hr == 2 || hr == 3 || hr == 4 || hr == 22 || hr == 23) {
-        // Night
-        switch(icon) {
-            case 1: $('#theDiv').html('<img id="theImg" src="images/weathericons/moon-b.png"/><h3 id="theWeather">Klart</h3>'); break;
-            case 2: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-night-b.png"/><h3 id="theWeather">Mest klart</h3>'); break;
-            case 3: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-night-b.png"/><h3 id="theWeather">Växlande molnighet</h3>'); break;
-            case 4: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-night-b.png"/><h3 id="theWeather">Halvklart</h3>'); break;
-            case 5: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>'); break;
-            case 6: $('#theDiv').html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>'); break;
-            case 7: $('#theDiv').html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>'); break;
-            case 8: $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regnskurar</h3>'); break;
-            case 9: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åskskurar</h3>'); break;
-            case 10: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Byar av snöblandat regn</h3>'); break;
-            case 11: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöbyar</h3>'); break;
-            case 12: $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regn</h3>'); break;
-            case 13: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>'); break;
-            case 14: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>'); break;
-            case 15: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>'); break;
-        } // End night
-    } else {
-        // Day
-        switch(icon) {
-            case 1: $('#theDiv').html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>'); break;
-            case 2: $('#theDiv').html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Mest klart</h3>'); break;
-            case 3: $('#theDiv').html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Växlande molnighet</h3>'); break;
-            case 4: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Halvklart</h3>'); break;
-            case 5: $('#theDiv').html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>'); break;
-            case 6: $('#theDiv').html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>'); break;
-            case 7: $('#theDiv').html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>'); break;
-            case 8: $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regnskurar</h3>'); break;
-            case 9: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åskskurar</h3>'); break;
-            case 10: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Byar av snöblandat regn</h3>'); break;
-            case 11: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöbyar</h3>'); break;
-            case 12: $('#theDiv').html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regn</h3>'); break;
-            case 13: $('#theDiv').html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>'); break;
-            case 14: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>'); break;
-            case 15: $('#theDiv').html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>'); break;
-        } //End day
-    } // End else
-   
-    return  $('#temp-now').html(' ' + Math.round(weatherNow[0].parameters[1].values[0]) + '°') +
-            $('#weather-wind').html('Vindhastighet: ' + weatherNow[0].parameters[11].values[0] + " " + weatherNow[0].parameters[11].unit ) +
-            $('#weather-pressure').html('Lufttryck: ' + weatherNow[0].parameters[0].values[0] + " " + weatherNow[0].parameters[0].unit) +
-            $('#symbol').html('Symbol: ' + weatherNow[0].parameters[18].values[0]);
-       
-} // End smhiWeather
-
+function smhiWeather(e,a,t){
+// Function for finding the object contaning the
+// weather information for current hour and return
+// it to the variable weatherNow.
+function s(e,a,t){var i=[];for(var r in e)e.hasOwnProperty(r)&&("object"==_typeof(e[r])?i=i.concat(s(e[r],a,t)):r==a&&e[a]==t&&i.push(e));return i}var i=fullDate(a),r=s(e.timeSeries,"validTime",i),c=e.timeSeries.indexOf(r[0]),n=(function(a){for(var t=e.timeSeries,s=c+1,i=c+2,r=c+3,n=c+4,o=c+5,h=c+6,m=c+7,g=c+8,l=c+9,d=c+10,u=void 0,b=0,p=(new Date).getHours(),v=c;v<c+10||10==c;v++){if(u=t[v].parameters[18].values[0],b++,0==p||1==p||2==p||3==p||4==p||22==p||23==p)
+// Night
+switch(u){case 1:u='<div>Klart</div><img class="forecast-icon" src="images/weathericons/moon-b.png"/>';break;case 2:u='<div>Mest klart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-night-b.png"/>';break;case 3:u='<div>Växlande molnighet</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-night-b.png"/>';break;case 4:u='<div>Halvklart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-night-b.png"/>';break;case 5:u='<div>Målnigt</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>';break;case 6:u='<div>Mulet</div><img class="forecast-icon" src="images/weathericons/overcast-b.png"/>';break;case 7:u='<div>Dimma</div><img class="forecast-icon" src="images/weathericons/fog-b.png"/>';break;case 8:u='<div>Regnskurar</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>';break;case 9:u='<div>Åskskurar</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>';break;case 10:u='<div>Byar av snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>';break;case 11:u='<div>Snöbyar</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>';break;case 12:u='<div>Regn</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>';break;case 13:u='<div>Åska</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>';break;case 14:u='<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>';break;case 15:u='<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'}else
+// Day
+switch(u){case 1:u='<div>Klart</div><img class="forecast-icon" src="images/weathericons/sun-b.png"/>';break;case 2:u='<div>Mest klart</div><img class="forecast-icon" src="images/weathericons/nearly-clear-sky-b.png"/>';break;case 3:u='<div>Växlande molnighet</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>';break;case 4:u='<div>Halvklart</div><img class="forecast-icon" src="images/weathericons/slightly-cloudy-b.png"/>';break;case 5:u='<div>Målnigt</div><img class="forecast-icon" src="images/weathericons/cloud-b.png"/>';break;case 6:u='<div>Mulet</div><img class="forecast-icon" src="images/weathericons/overcast-b.png"/>';break;case 7:u='<div>Dimma</div><img class="forecast-icon" src="images/weathericons/fog-b.png"/>';break;case 8:u='<div>Regnskurar</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>';break;case 9:u='<div>Åskskurar</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>';break;case 10:u='<div>Byar av snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>';break;case 11:u='<div>Snöbyar</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>';break;case 12:u='<div>Regn</div><img class="forecast-icon" src="images/weathericons/rain-b.png"/>';break;case 13:u='<div>Åska</div><img class="forecast-icon" src="images/weathericons/thunder-b.png"/>';break;case 14:u='<div>Snöblandat regn</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>';break;case 15:u='<div>Snöfall</div><img class="forecast-icon" src="images/weathericons/snow-b.png"/>'}// End else
+$(".forecast-weather-"+b).html(u)}// End for loop
+$(".forecast-time-1").html(t[s].validTime.slice(11,16)),$(".forecast-temp-1").html(Math.round(t[s].parameters[1].values[0])+"°"),$(".forecast-time-2").html(t[i].validTime.slice(11,16)),$(".forecast-temp-2").html(Math.round(t[i].parameters[1].values[0])+"°"),$(".forecast-time-3").html(t[r].validTime.slice(11,16)),$(".forecast-temp-3").html(Math.round(t[r].parameters[1].values[0])+"°"),$(".forecast-time-4").html(t[n].validTime.slice(11,16)),$(".forecast-temp-4").html(Math.round(t[n].parameters[1].values[0])+"°"),$(".forecast-time-5").html(t[o].validTime.slice(11,16)),$(".forecast-temp-5").html(Math.round(t[o].parameters[1].values[0])+"°"),$(".forecast-time-6").html(t[h].validTime.slice(11,16)),$(".forecast-temp-6").html(Math.round(t[h].parameters[1].values[0])+"°"),$(".forecast-time-7").html(t[m].validTime.slice(11,16)),$(".forecast-temp-7").html(Math.round(t[m].parameters[1].values[0])+"°"),$(".forecast-time-8").html(t[g].validTime.slice(11,16)),$(".forecast-temp-8").html(Math.round(t[g].parameters[1].values[0])+"°"),$(".forecast-time-9").html(t[l].validTime.slice(11,16)),$(".forecast-temp-9").html(Math.round(t[l].parameters[1].values[0])+"°"),$(".forecast-time-10").html(t[d].validTime.slice(11,16)),$(".forecast-temp-10").html(Math.round(t[d].parameters[1].values[0])+"°")}(t),r[0].parameters[18].values[0]),o=(new Date).getHours();
+// If it's night it displays different icons in the switch statement
+if(0==o||1==o||2==o||3==o||4==o||22==o||23==o)
+// Night
+switch(n){case 1:$("#theDiv").html('<img id="theImg" src="images/weathericons/moon-b.png"/><h3 id="theWeather">Klart</h3>');break;case 2:$("#theDiv").html('<img id="theImg" src="images/weathericons/slightly-cloudy-night-b.png"/><h3 id="theWeather">Mest klart</h3>');break;case 3:$("#theDiv").html('<img id="theImg" src="images/weathericons/slightly-cloudy-night-b.png"/><h3 id="theWeather">Växlande molnighet</h3>');break;case 4:$("#theDiv").html('<img id="theImg" src="images/weathericons/slightly-cloudy-night-b.png"/><h3 id="theWeather">Halvklart</h3>');break;case 5:$("#theDiv").html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>');break;case 6:$("#theDiv").html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>');break;case 7:$("#theDiv").html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>');break;case 8:$("#theDiv").html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regnskurar</h3>');break;case 9:$("#theDiv").html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åskskurar</h3>');break;case 10:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Byar av snöblandat regn</h3>');break;case 11:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöbyar</h3>');break;case 12:$("#theDiv").html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regn</h3>');break;case 13:$("#theDiv").html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>');break;case 14:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>');break;case 15:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>')}else
+// Day
+switch(n){case 1:$("#theDiv").html('<img id="theImg" src="images/weathericons/sun-b.png"/><h3 id="theWeather">Klart</h3>');break;case 2:$("#theDiv").html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Mest klart</h3>');break;case 3:$("#theDiv").html('<img id="theImg" src="images/weathericons/nearly-clear-sky-b.png"/><h3 id="theWeather">Växlande molnighet</h3>');break;case 4:$("#theDiv").html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Halvklart</h3>');break;case 5:$("#theDiv").html('<img id="theImg" src="images/weathericons/slightly-cloudy-b.png"/><h3 id="theWeather">Målnigt</h3>');break;case 6:$("#theDiv").html('<img id="theImg" src="images/weathericons/overcast-b.png"/><h3 id="theWeather">Mulet</h3>');break;case 7:$("#theDiv").html('<img id="theImg" src="images/weathericons/fog-b.png"/><h3 id="theWeather">Dimma</h3>');break;case 8:$("#theDiv").html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regnskurar</h3>');break;case 9:$("#theDiv").html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åskskurar</h3>');break;case 10:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Byar av snöblandat regn</h3>');break;case 11:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöbyar</h3>');break;case 12:$("#theDiv").html('<img id="theImg" src="images/weathericons/rain-b.png"/><h3 id="theWeather">Regn</h3>');break;case 13:$("#theDiv").html('<img id="theImg" src="images/weathericons/thunder-b.png"/><h3 id="theWeather">Åska</h3>');break;case 14:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöblandat regn</h3>');break;case 15:$("#theDiv").html('<img id="theImg" src="images/weathericons/snow-b.png"/><h3 id="theWeather">Snöfall</h3>')}// End else
+return $("#temp-now").html(" "+Math.round(r[0].parameters[1].values[0])+"°")+$("#weather-wind").html("Vindhastighet: "+r[0].parameters[11].values[0]+" "+r[0].parameters[11].unit)+$("#weather-pressure").html("Lufttryck: "+r[0].parameters[0].values[0]+" "+r[0].parameters[0].unit)+$("#symbol").html("Symbol: "+r[0].parameters[18].values[0])}// End smhiWeather
 // Function for calculating the parameters
 // needed for the getObjects function.
-function fullDate(thisYear) {
-    let date = new Date(),
-        year = date.getFullYear(),
-        month = date.getMonth(),
-        day = date.getDate(),
-        time = date.getHours();
-
-    month = month + 1;
-    if(month < 10) {
-        month = '0' + month;
-    }
-    if(day < 10) {
-        day = '0' + day;
-    }
-    if(time < 10) {
-        time = '0' + time;
-    }
-    return year + '-' + month + '-' + day + 'T' + time + ':00:00Z';
-} // End fullDate
-
+function fullDate(e){var a=new Date,t=a.getFullYear(),s=a.getMonth(),i=a.getDate(),r=a.getHours();return s+=1,s<10&&(s="0"+s),i<10&&(i="0"+i),r<10&&(r="0"+r),t+"-"+s+"-"+i+"T"+r+":00:00Z"}// End fullDate
 // function adding black border around tex
-function smhiShow() {
-    return '<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss ' + data + '</h2>' 
-    
-} // End smhiShow
+function smhiShow(){return'<h2 style="color: white; text-shadow: black 0.1em 0.1em 0.2em">ssss '+data+"</h2>"}var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};$(document).ready(function(){setInterval(function(){$("#raindrops").fadeIn(50).delay(50).fadeOut().delay(50).fadeIn(100)},5e3),console.log("animation.js")}),dayDateMonth(),$(document).ready(function(){loader(!0)}),
+// Call the open menu function
+$("#open-menu").click(function(){openMenu()}),
+// Call the close menu function
+$("#close-menu").click(function(){closeMenu()}),
+// Start clock
+startTime(),
+// Call the open menu function
+$("#show-forecast").click(function(){showForecast()}),
+// Call the close menu function
+$("#hide-forecast").click(function(){hideForecast()}),
+// Run function only when page is done loading
+$(document).ready(function(){
+// Click to run search function
+$("#search-btn").click(callback),
+// Press enter to run search function
+$("#city-name").keypress(function(){13===event.which&&callback()})});
+// Variable with function which activates on click or keydown event.
+var callback=function(){loader(!1),
+// function, Close dropdown menu after click or keydown enter
+closeMenu()};
