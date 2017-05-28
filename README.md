@@ -1,14 +1,6 @@
 
-# weahterapp test test
-
-
-# weahterapp test test
-
-weatherapp + more
-
-Jag hatar dig Johan!
-
-Hatar dig fortfarande !
-På riktigt.
-
-Anders, jag har inte direkt några varma kännslor för dig heller....
+Filer som ignoreras i .gitignore för githu repository:
+ajax_flickr_api
+node_modules
+package.json
+gulpfile.js
